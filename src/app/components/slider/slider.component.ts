@@ -138,7 +138,7 @@ export class SliderComponent implements OnInit, AfterViewInit {
     this.flagnewSlideMoov = false;
     return false;
   }
-  endSlide(): void {
+  endSlide($event): void {
     this.flagBtnStart = false;
     if (this.flagToBack) {
       if (Math.abs(this.moovX) > this.InitPosition / 2) {
@@ -177,7 +177,7 @@ export class SliderComponent implements OnInit, AfterViewInit {
     document.onmousemove = null;
     document.onmouseup = null;
   }
-  leaveMouse(): boolean {
+  leaveMouse($event): boolean {
     // this.endSlide();
     this.flagMoov = false;
     this.moobTo = 0;

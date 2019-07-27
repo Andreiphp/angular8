@@ -57,7 +57,7 @@ export class HeaderMenuComponent implements OnInit, OnDestroy {
         this.flagMainMenu = true;
         this.flegSubCat = false;
     }
-   private resize(event) {
+   public resize(event) {
         if (event.target.innerWidth >= 990) {
             this.flagMainMenu = false;
             this.flegSubCat = false;
