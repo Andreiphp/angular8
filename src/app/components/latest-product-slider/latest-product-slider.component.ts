@@ -11,7 +11,7 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class LatestProductSliderComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() products;
-  @ViewChild('sliderProduct')
+  @ViewChild('sliderProduct', {static: true})
   domSlider: ElementRef;
   public sliderWrapper: any;
   public productsList: HTMLCollection;

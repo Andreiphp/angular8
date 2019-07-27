@@ -32,7 +32,7 @@ export class SliderComponent implements OnInit, AfterViewInit {
   private dretting: HTMLElement;
   private flagtoDo: boolean = false;
 
-  @ViewChild('sliderSection') sliderSection: ElementRef;
+  @ViewChild('sliderSection', {static: true}) sliderSection: ElementRef;
 
   constructor(public el: ElementRef, private _mainSrv: MainServices) {
     this._mainSrv.subOnResize.subscribe(() => {
