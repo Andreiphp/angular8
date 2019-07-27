@@ -1,0 +1,53 @@
+.latest-product-slider
+  padding-left: 10px
+  padding-right: 10px
+  position: relative
+  .wr-slider
+    margin-top: -30px
+    margin-bottom: -30px
+    position: relative
+    overflow: hidden
+  .arrow-next, .arrow-prev
+    margin-top: -23px
+    cursor: pointer
+    z-index: 9
+    width: 46px
+    height: 46px
+    text-align: center
+    line-height: 44px
+    display: inline-block
+    top: 40%
+    opacity: 0
+    border-radius: 100%
+    color: #e2e2e2
+    transition: 0.4s
+    i
+      font-size: 50px
+  .arrow-next
+    position: absolute
+    right: -9px
+  .arrow-prev
+    position: absolute
+    left: -20px
+
+  .swipper-wrapper
+    background: rgba(0, 0, 0, 0)
+    display: flex
+    justify-content: start
+    padding: 10px
+    position: relative
+    transition: 1000ms
+  .slider-wr-prod
+    display: block
+    width: calc(100% / 5)
+    flex-shrink: 0
+    height: 100%
+    position: relative
+.latest-product-slider
+  &:hover
+    .arrow-prev,.arrow-next
+      top: 50%
+      opacity: 1
+      &:hover
+        i
+          color: #cc2121

@@ -1,0 +1,11 @@
+<div class="wr" *ngIf='title'>
+    <div class="latest-title">
+        <span>{{title}}</span>
+        <p class="sutitle">{{message}}</p>
+    </div>
+</div>
+<div class="grid-prod-slide">
+    <div class="wr">
+        <app-latest-product-slider [products]="products"></app-latest-product-slider>
+    </div>
+</div>

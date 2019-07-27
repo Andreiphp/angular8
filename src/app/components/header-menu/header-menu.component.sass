@@ -1,0 +1,391 @@
+// \:host
+//     display: none
+header
+  background: #ffffff
+  position: relative
+  display: block
+  .header-area
+    padding: 10px 0
+    z-index: 1001;
+    background: white;
+    position: relative;
+.center
+  display: flex
+  justify-content: space-between
+  align-items: center
+  width: 100%
+.header-search
+  position: relative
+  min-height: 1px
+  padding-right: 15px
+  width: 25%
+  max-width: 25%
+  form
+    max-width: 200px
+.group
+  position: relative
+  display: flex
+  align-items: stretch
+  width: 100%
+  font-size: 12px
+  input[type=text]
+    padding: 0 20px 0 0
+    height: 25px
+    z-index: 1
+    border: 0
+    font-size: 13px
+    font-weight: 300
+    background-color: transparent
+    line-height: 1.5
+    color: #495057
+    &:focus
+      color: #495057
+      background-color: #fff
+      border-color: #80bdff
+      outline: 0
+.search-input
+  display: flex
+  align-items: center
+  .search-btn
+    background-color: transparent
+    width: 25px
+    height: 25px
+    padding: 0
+    border: 0
+    padding: 0 6px
+    font-size: 19px
+    color: #6c757d
+    outline: none
+    display: flex
+    align-items: center
+    cursor: pointer
+    img
+      width: 20px
+      height: 20px
+.header-logo
+  width: 50%
+  max-width: 50%
+  position: relative
+  width: 100%
+  min-height: 1px
+  padding-right: 15px
+  padding-left: 15px
+  .logo
+    a
+      display: block
+      width: 100px
+      height: 20px
+      margin: 0 auto
+      img
+        display: inline-block
+        width: 100%
+        height: 100%
+.header-cart
+  max-width: 25%
+  width: 25%
+  display: flex
+  justify-content: flex-end
+  .header-cart-area
+    .toggle-cart
+      outline: none
+      font-weight: 400
+      background-color: transparent
+      border: 0
+      text-transform: uppercase
+      font-size: 19px
+      display: inline-block
+      font-weight: 500
+      cursor: pointer
+      position: relative
+      img
+        width: 20px
+        height: 20px
+      .count-style
+        position: absolute
+        background-color: #cc2121
+        color: white
+        border-radius: 8px
+        width: 17px
+        height: 17px
+        line-height: 17px
+        font-size: 10px
+        text-align: center
+        top: -5px
+        right: -5px
+        z-index: 2
+  .btn-cart
+    position: relative
+    .drop-menu
+      display: block
+      overflow: hidden
+      z-index: 9911
+      right: -10px
+      left: auto
+      width: 355px
+      position: absolute
+      top: 100%
+      min-width: 10rem
+      margin: .125rem 0 0
+      font-size: 1rem
+      color: #212529
+      text-align: left
+      list-style: none
+      .shop-cart-content
+        margin: 15px 10px 10px
+        box-shadow: 0 3px 9.3px 0.7px rgba(0, 0, 0, 0.15)
+        border-top: 2px solid #cc2121
+        background-color: #ffffff
+        .ul-cart
+          max-height: 300px
+          overflow-y: auto
+          padding: 30px 20px 0
+          .singl-cart-product
+            border-bottom: 1px solid #ebebeb
+            margin-bottom: 20px
+            padding-bottom: 20px
+            display: flex
+            justify-content: space-between
+            align-items: flex-start
+            .sing-car-img
+              position: relative
+              margin-right: 10px
+              img
+                width: 70px
+                height: 70px
+                display: inline-block
+              .count-cart
+                top: -4px
+                left: -4px
+                min-width: 25px
+                line-height: 25px
+                padding: 0
+                text-align: center
+                font-size: 13px
+                display: inline-block
+                position: absolute
+                background-color: #cc2121
+                color: #ffffff
+                border-radius: 50%
+            .sing-car-title
+              width: 100%
+              padding-right: 10px
+              h4
+                font-size: 13px
+                font-weight: 400
+                text-transform: capitalize
+                margin-bottom: 5px
+                padding-right: 5px
+                position: relative
+                overflow: hidden
+                line-height: 1.2
+                text-overflow: ellipsis
+                max-height: 2.4em
+                font-weight: 600
+              .sin-car-price
+                font-weight: 600
+                margin-bottom: 5px
+                font-size: 15px
+                color: #cc2121
+            .sin-car-delite
+              position: relative
+              top: -3px
+              font-size: 16px
+.shopping-cart-total
+  padding: 20px 20px 0
+  box-shadow: 0 -5px 20px -5px rgba(0, 0, 0, 0.08)
+  h4
+    font-size: 16px
+    line-height: 1.4
+    text-transform: capitalize
+    margin-bottom: 10px
+    font-weight: 500
+    span
+      float: right
+.sin-cart-btn
+  padding: 10px 20px 20px
+  overflow: hidden
+  a
+    height: 40px
+    line-height: 40px
+    text-align: center
+    padding: 0 30px
+    text-transform: uppercase
+    font-size: 14px
+    font-weight: 400
+    display: inline-block
+    cursor: pointer
+    min-width: 140px
+    background-color: #252525
+    border-radius: 25px
+    color: #ffffff
+.menu
+  display: flex
+  justify-content: center
+  align-items: center
+  border-top: 1px solid #ebebeb
+  .menu-main-menu
+    display: flex
+    align-items: center
+.menu-toggle
+  position: relative
+  color: #ffffff
+  display: none
+  text-transform: uppercase
+  text-decoration: none
+  padding: 15px
+  box-sizing: border-box
+  z-index: 1001
+  &:after
+    content: "\f078"
+    font-family: FontAwesome
+    position: absolute
+    right: 0
+    top: 48%
+    height: 13px
+    font-size: 12px
+    margin-top: -6.5px
+    color: #fff
+    transition: all 0.3s ease-in-out
+.full
+  width: 100%
+.menu-main
+  display: flex
+  text-align: center
+  .menu-link
+      padding: 17px 30px
+      font-size: 12px
+      font-weight: 600
+      color: #000
+      text-transform: uppercase
+      line-height: 20px
+      position: relative
+
+.active_link
+  color: #cc2121!important
+  &:after
+    color: #cc2121!important
+
+.catalog_link
+  // &:after
+  //   transition: 0.3s
+  //   content: '\f107'
+  //   font-family: FontAwesome
+  //   margin-left: 5px
+  //   font-size: 13px
+  //   font-weight: 500
+  //   right: -22px
+  //   top: 13px
+  //   position: absolute
+
+.menu_catalog_list
+  display: block
+.cat-li
+  border: 1px solid #e4e4e4
+  padding: 30px
+  padding-bottom: 0
+  a
+    display: block
+    padding: 0 0 10px
+    text-transform: capitalize
+    line-height: 30px
+    color: #000
+    font-weight: 600
+    text-align: left
+    border-bottom: 1px solid #c3c3c3
+    &:last-child
+      border-bottom: none
+.cat-li
+  a:hover
+    color: #cc2121
+#m:hover
+  cursor: pointer
+
+@media only screen and (min-width: 990px)
+  .menu-main
+    position: relative
+    display: flex
+    justify-content: space-around
+    text-align: center
+    width: 80%
+    padding-top: 10px
+  .menu_catalog_list
+    display: block!important
+    position: absolute
+    background-color: #fff
+    z-index: 1000
+  
+@media only screen and (max-width: 990px)
+  .menu_catalog_list
+    display: block!important
+    background-color: #434343
+  .menu
+    display: block
+    background-color: #434343
+    height: 45px
+  .menu-main
+    display: block
+    width: 100%
+    flex-direction: column
+    box-sizing: border-box
+    z-index: 100
+    position: relative
+    overflow: hidden
+    .menu-link
+        padding: 12px 30px
+        font-size: 12px
+        font-weight: 600
+        color: #ffffff
+        text-transform: uppercase
+        line-height: 20px
+        position: relative
+        display: block
+        width: 100%
+        text-align: left
+        border-bottom: 1px solid rgba(255,255,255,.15)
+        box-sizing: border-box
+        background: #434343
+  .opensubCat
+    height: 168px
+  .closesubCat
+    height: 0px
+  .menu-toggle
+    display: block
+    color: #ffffff
+    background-color: #434343
+    cursor: pointer
+    border-bottom: 1px solid #cccccc
+    z-index: 1;
+    &:after
+      right: 10px
+  .catalog_link
+    &:after
+      content: "\f067"
+      position: absolute
+      margin: auto
+      right: 78px
+      transition: transform .3s ease-out
+      font-size: 12px;
+      top: 45%
+      margin-top: -6px
+    &:hover
+      color: #cc2121!important
+      &:after
+        color: #cc2121
+
+  .menu_catalog_list
+    display: none
+    position: relative
+    width: 100%
+    padding-left: 0
+    left: 0
+    top: 0
+    will-change: height
+    .cat-li
+      border: none
+      a
+        color: #ffffff
+.rotate:after
+  transform: rotate(180deg)
+.rotate_l:after
+    transform: rotate(180deg)
+    color: #cc2121

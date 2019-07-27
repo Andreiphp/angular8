@@ -1,0 +1,129 @@
+<div class="wr">
+    <div class="center">
+      <div class="row">
+          <div class="catal-left">
+            <aside id="catal-filter">
+                <div class="catal-block">
+                  <h2 class="catal-title">
+                    Каталог
+                  </h2>
+                  <div class="catal-list">
+                    <ul>
+                      <li><a>Первая категория</a></li>
+                      <li><a>Первая категория</a></li>
+                      <li><a>Первая категория</a></li>
+                      <li><a>Первая категория</a></li>
+                      <li><a>Первая категория</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="catal-block">
+                    <h2 class="catal-title">
+                     Бренды
+                    </h2>
+                    <div class="catal-list">
+                      <ul>
+                        <li><label>
+                            Shoes (198)
+                            <input type="checkbox">
+                        </label></li>
+                        <li><label>
+                            Shoes (198)
+                            <input type="checkbox">
+                        </label></li>
+                        <li><label>
+                            Shoes (198)
+                            <input type="checkbox">
+                        </label></li>
+                        <li><label>
+                            Shoes (198)
+                            <input type="checkbox">
+                        </label></li>
+                        <li><label>
+                            Shoes (198)
+                            <input type="checkbox">
+                        </label></li>
+                        <li><label>
+                            Shoes (198)
+                            <input type="checkbox">
+                        </label></li>
+                        <li><label>
+                            Shoes (198)
+                            <input type="checkbox">
+                        </label></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="catal-block">
+                      <h2 class="catal-title">
+                       Цены
+                      </h2>
+                      <div class="catal-list">
+                        <ul>
+                          <li><label>
+                              Shoes (198$ - 12$)
+                              <input type="checkbox" value="1">
+                          </label></li>
+                          <li><label>
+                              Shoes (198$ - 12$)
+                              <input type="checkbox" value="1">
+                          </label></li>
+                          <li><label>
+                              Shoes (198$ - 12$)
+                              <input type="checkbox" value="1">
+                          </label></li>
+                          <li><label>
+                              Shoes (198$ - 12$)
+                              <input type="checkbox" value="1">
+                          </label></li>
+                          <li><label>
+                              Shoes (198$ - 12$)
+                              <input type="checkbox" value="1">
+                          </label></li>
+                        </ul>
+                      </div>
+                    </div>
+            </aside>
+            </div>
+            <div class="catal-right">
+              <main>
+                <div class="catal-nav-top">
+                  <div class="catal-tool-bar">
+                    <div class="catal-tool-inner">
+                      <div class="catal-view-mode">
+                          <ul>
+                            <li><i class="fa fa-table"></i></li>
+                            <li><i class="fa fa-bars"></i></li>
+                          </ul>
+                      </div>
+                      <div class="catal-tool-count">
+                        <span>
+                          Showing 10 to 18 of 27
+                        </span>
+                      </div>
+                    </div>
+                    <div class="catal-tool-select">
+                      <div class="catal-product-sort">
+                        <p>Sort By:</p>
+                        <select>
+                          <option selected>name</option>
+                          <option>pimo</option>
+                          <option>tiponio</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="catal-product-list">
+                  <div class="catal-product-item" *ngFor="let product of products">
+                    <app-pre-view-product [product]="product "></app-pre-view-product>
+                  </div>
+                </div>
+                <div class="catal-pagination">
+                  <app-pagination></app-pagination>
+                </div>
+              </main>
+            </div>
+      </div>
+    </div>
+  </div>

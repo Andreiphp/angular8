@@ -1,0 +1,123 @@
+\:host
+  display: block
+  position: relative
+  transition-property: transform,-webkit-transform
+  .product-layout
+    width: 100%
+    margin-top: 5px
+    cursor: pointer
+    padding: 15px
+    display: inline-block
+    transition: 0.7s
+    &:hover
+      box-shadow: 0 0 20px 0 rgba(41, 44, 58, 0.15)
+    .product-inner
+      width: 100%
+      .product-image
+        overflow: hidden
+        position: relative
+        .action-links
+          position: absolute
+          display: flex
+          justify-content: space-around
+          align-items: center
+          left: 0
+          right: 0
+          bottom: 20px
+          text-align: center
+          z-index: 3
+          opacity: 1
+          height: 50px
+          line-height: 26px
+          padding: 12px 0
+          width: 200px
+          margin: 0 auto
+          box-shadow: 1px 1px 0 0 #e8e8e8
+          visibility: hidden
+          backface-visibility: hidden
+          transition: all 0.4s ease-out
+          transform: perspective(600px) rotateX(90deg)
+          a
+            line-height: 0
+            display: block
+            width: 50px
+            border-right: 1px solid #ebebeb
+            i
+              font-size: 18px
+              font-weight: bold
+              backface-visibility: hidden
+              &:hover
+                color: red
+        .product-label
+          position: absolute
+          top: 20px
+          font-size: 12px
+          height: 23px
+          width: 50px
+          line-height: 23px
+          text-align: center
+          text-transform: capitalize
+          font-weight: 400
+          border-radius: 3px
+          color: #fff
+        .label-new
+          right: 20px
+          background-color: black
+        .label-sale
+          left: 20px
+          background-color: #cc2121
+        a
+          display: block
+          width: 100%
+        img
+          width: 100%
+          height: auto
+      .product-caption
+        padding-top: 15px
+        .product-name
+          display: -webkit-box;
+          text-overflow: ellipsis
+          max-height: 3em
+          font-weight: 400
+          margin-bottom: 11px
+          margin-top: 8px
+          text-transform: capitalize
+          position: relative
+          overflow: hidden
+          line-height: 1.5
+          a
+            font-size: 14px
+            position: relative
+            &:after
+              content: ""
+              display: block
+              bottom: -2px
+              left: 0
+              right: 0
+              width: 0
+              height: 1px
+              background-color: #cc2121
+              transition: .7s
+            &:hover:after
+              width: 100%
+      .product-price
+        .old-price
+          font-size: 14px
+          font-weight: 400
+          padding-right: 8px
+          text-decoration: line-through
+          display: inline-block
+        .new-price
+          font-size: 18px
+          font-weight: 500
+          color: #cc2121
+.product-layout:hover
+  .product-inner
+    .product-image
+      .action-links
+        z-index: 3
+        opacity: 1
+        visibility: visible
+        transform: translateY(0)
+
+
