@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {RequestsService} from '../../services/requests.service';
+import {RequestsService} from '../../../services/requests.service';
 
 @Component({
     selector: 'app-admin-new-product',

@@ -1,13 +1,30 @@
-import {Injectable} from '@angular/core';
-import {Subject, Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Subject, Observable } from 'rxjs';
 
 @Injectable()
 export class PaginationServices {
-  constructor ( private http: HttpClient) {
-
+  curentPage: number;
+  totalRecords: number;
+  visibleCountItems: number;
+  totalPages: number;
+  category: string;
+  public subscribePagination = new Subject<any>();
+  constructor() {
+    this.visibleCountItems = localStorage.getItem('visibleCount') ? +localStorage.getItem('visibleCount') : 1;
   }
-  getCountAllPages (): Observable<any> {
-    return this.http.get('http://localhost:8080/router/count_pages');
+
+  setConfig(curent, totalR, category) {
+    this.curentPage = curent,
+    this.totalRecords = totalR;
+    this.category = category;
+    this.setTotalPages();
+  }
+
+  setTotalPages() {
+    if (this.totalRecords > this.visibleCountItems) {
+      this.totalPages = Math.ceil(this.totalRecords / this.visibleCountItems);
+    } else {
+      this.totalPages = 0;
+    }
   }
 }

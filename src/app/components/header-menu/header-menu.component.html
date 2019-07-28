@@ -123,7 +123,7 @@
                             <!-- [ngClass]="flegSubCat ? 'menu-link catalog_link rotate_l' : 'menu-link catalog_link'" -->
                         <a id="m"
                             class="menu-link catalog_link"
-                            routerLink="/catalog/all"
+                            [routerLink]="['catalog', 'all', '1']"
                             routerLinkActive="active_link">Каталог
                         </a>
                         <!-- <div class="menu_catalog_list" @openBascket *ngIf='flegSubCat'>

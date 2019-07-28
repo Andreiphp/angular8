@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { divTrigger } from './catalog-animations';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, switchMap } from 'rxjs/operators';
+import { ProductsService } from 'src/app/services/products.service';
+import { Product } from '../../interfaces/product.interfaces';
+import { PaginationServices } from 'src/app/services/pagination.services';
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
@@ -11,77 +14,54 @@ import { takeUntil } from 'rxjs/operators';
     divTrigger
   ]
 })
-export class CatalogComponent implements OnInit {
+export class CatalogComponent implements OnInit, OnDestroy {
   public isVisible = false;
-  public products = [
-    {
-      id: '1',
-      title: 'werty',
-      price: 'image',
-      image: 'product-10.jpg',
-      state: 'all'
-    },
-    {
-      id: '1',
-      title: 'werty',
-      price: 'image',
-      image: 'product-10.jpg',
-      state: 'all'
-    },
-    {
-      id: '1',
-      title: 'werty',
-      price: 'image',
-      image: 'product-10.jpg',
-      state: 'all'
-    },
-    {
-      id: '1',
-      title: 'werty',
-      price: 'image',
-      image: 'product-11.jpg',
-      state: 'all'
-    },
-    {
-      id: '1',
-      title: 'werty',
-      price: 'image',
-      image: 'product-11.jpg',
-      state: 'all'
-    },
-    {
-      id: '1',
-      title: 'werty',
-      price: 'image',
-      image: 'product-11.jpg',
-      state: 'all'
-    },
-    {
-      id: '1',
-      title: 'werty',
-      price: 'image',
-      image: 'product-11.jpg',
-      state: 'all'
-    },
-    {
-      id: '1',
-      title: 'werty',
-      price: 'image',
-      image: 'product-11.jpg',
-      state: 'all'
-    },
-  ];
-  private _subscribe: Subject<any> = new Subject();
+  public products: Product[] = [];
+  public countPages: number;
+  private category: string;
+  private page: number;
+  private _UNSEBSCRIBE: Subject<any> = new Subject();
   constructor(
-    private _router: ActivatedRoute,
+    private _ROUTER: ActivatedRoute,
+    private _PRODSRV: ProductsService,
+    private _PAGSRV: PaginationServices,
   ) {
-    this._router.params.subscribe(data => {
-      console.log(data);
+    this._ROUTER.children[0].params.subscribe(data => {
+      const params = this._ROUTER.snapshot.children[0].params;
+      this.category = params.category;
+      this.page = params.page;
+      this._PRODSRV.getAllProducts(this.category, this.page, this._PAGSRV.visibleCountItems)
+        .pipe(takeUntil(this._UNSEBSCRIBE)).toPromise()
+        .then(products => {
+          this.fillProducts(products);
+          this._PAGSRV.subscribePagination.next();
+        }).catch(error => {
+          console.log(error);
+        });
     });
-   }
+  }
 
   ngOnInit() {
 
+  }
+  fillProducts({ count: c, res: data }) {
+    this.products = [];
+    if (data.length) {
+      this._PAGSRV.setConfig(this.page, c.count, this.category);
+      data.forEach((product: Product) => {
+        this.products.push({
+          id: product.id,
+          title: product.title,
+          price: product.price,
+          state: 'all',
+          img: product.img
+        });
+      });
+    }
+  }
+  ngOnDestroy() {
+    this._UNSEBSCRIBE.next();
+    this._UNSEBSCRIBE.complete();
   }
 
 }

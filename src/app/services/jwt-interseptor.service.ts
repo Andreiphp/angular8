@@ -8,8 +8,11 @@ import {Observable} from 'rxjs';
 
 export class JwtInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        const currentUser = JSON.parse(localStorage.getItem('isAdmin'));
 
-        let currentUser = JSON.parse(localStorage.getItem('isAdmin'));
+        if (!request.url.includes('admin/')) {
+            return next.handle(request);
+          }
         if (currentUser && request.url === 'http://localhost:8080/router/checkToken') {
             request = request.clone({
                 setHeaders: {

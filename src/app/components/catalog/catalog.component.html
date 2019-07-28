@@ -119,7 +119,7 @@
                     <app-pre-view-product [product]="product "></app-pre-view-product>
                   </div>
                 </div>
-                <div class="catal-pagination">
+                <div class="catal-pagination" *ngIf="products.length">
                   <app-pagination></app-pagination>
                 </div>
               </main>

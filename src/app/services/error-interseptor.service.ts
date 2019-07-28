@@ -1,24 +1,27 @@
-import {Injectable} from '@angular/core';
-import {HttpRequest, HttpHandler, HttpEvent, HttpInterceptor} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
-import {catchError, tap} from 'rxjs/operators';
-import {Router} from '@angular/router';
+import { Injectable } from '@angular/core';
+import { HttpRequest, HttpHandler, HttpInterceptor } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ErrorInterseptorService implements HttpInterceptor {
-    constructor(private router: Router) {
+    constructor(private router: Router, private actRoute: ActivatedRoute) {
 
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
         const obs = next.handle(request).subscribe(res => {
-        }, error1 => {
-            if (error1.status === 401) {
-                this.router.navigate(['/login']);
-                localStorage.removeItem('isAdmin');
+        }, error => {
+         //   const url: string = this.actRoute['_routerState'].snapshot.url;
+            if (!request.url.includes('/admin')) {
+                if (error.status === 401) {
+                    this.router.navigate(['/login']);
+                    localStorage.removeItem('isAdmin');
+                }
             }
+
         });
 
         return next.handle(request);

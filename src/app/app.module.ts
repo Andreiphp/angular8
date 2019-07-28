@@ -13,8 +13,8 @@ import { JwtInterceptor } from './services/jwt-interseptor.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin/admin.component';
-import { AdminNewProductComponent } from './components/admin-new-product/admin-new-product.component';
-import { AdminRedactProdComponent } from './components/admin-redact-prod/admin-redact-prod.component';
+import { AdminNewProductComponent } from './components/admin/admin-new-product/admin-new-product.component';
+import { AdminRedactProdComponent } from './components/admin/admin-redact-prod/admin-redact-prod.component';
 import { ErrorInterseptorService } from './services/error-interseptor.service';
 import { HeaderMenuComponent } from './components/header-menu/header-menu.component';
 import { ShowCartDirective } from './directives/show-cart.directive';
@@ -28,6 +28,7 @@ import { PreViewProductComponent } from './components/pre-view-product/pre-view-
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import {PaginationServices} from './services/pagination.services';
+import {ProductsService} from './services/products.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +64,7 @@ import {PaginationServices} from './services/pagination.services';
     RequestsService,
     MainServices,
     PaginationServices,
+    ProductsService,
   ],
   bootstrap: [AppComponent]
 })

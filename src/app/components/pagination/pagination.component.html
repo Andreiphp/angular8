@@ -6,9 +6,7 @@
       <div class="pag-btn">
         <span><a class="pag-link"><i class="fa fa-angle-left"></i>Назад</a></span>
         <ul>
-          <li><a class="pag-link">1</a></li>
-          <li><a class="pag-link active">2</a></li>
-          <li><a class="pag-link">3</a></li>
+          <li *ngFor="let p of pages"><a [routerLink]="['/catalog', category, p]" class="pag-link" [ngClass]="p == curentPage ? 'active' : ''" >{{p}}</a></li>
         </ul>
         <span><a class="pag-link">Вперед<i class="fa fa-angle-right"></i></a></span>
       </div>
