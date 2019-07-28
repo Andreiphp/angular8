@@ -1,0 +1,5 @@
+<ul class="categories">
+    <li [ngClass]="categories_id == cat.id ? 'active' : ''"  class="categories-list" *ngFor = 'let cat of categories'>
+        <a [ngClass]="categories_id == cat.id ? 'active' : ''"  class="categories-link" [routerLink] = "['/catalog', cat.id, 1]">{{cat.title}}</a>
+    </li>
+</ul>

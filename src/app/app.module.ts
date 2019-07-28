@@ -29,6 +29,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import {PaginationServices} from './services/pagination.services';
 import {ProductsService} from './services/products.service';
+import { CategoriesComponent } from './components/catalog/categories/categories.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,8 @@ import {ProductsService} from './services/products.service';
     TestComponent,
     LatestProductSliderComponent,
     PreViewProductComponent,
-    PaginationComponent
+    PaginationComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,

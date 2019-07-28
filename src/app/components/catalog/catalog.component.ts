@@ -18,7 +18,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
   public isVisible = false;
   public products: Product[] = [];
   public countPages: number;
-  private category: string;
+  private category: number;
   private page: number;
   private _UNSEBSCRIBE: Subject<any> = new Subject();
   constructor(

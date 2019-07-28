@@ -34,23 +34,15 @@ export class RequestsService {
     checkToken() {
         return this.http.get('http://localhost:8080/router/checkToken');
     }
-
-    getFriends(): Observable<object> {
-        return this.http.post(`http://localhost:8080/get_friends`, { 'user_id': 37 });
+    get_categories(): Observable<any> {
+      return  this.http.get('http://localhost:8080/router/get_categories');
     }
 
-    get_one_user(): Observable<object> {
-        return this.http.post(`http://localhost:8080/get_one_user`, { id: 40 }).pipe(map(x => x[0]));
-    }
-    gitHun(randomOffset): Observable<object> {
-        return this.http.get('https://api.github.com/users?since=' + randomOffset);
-    }
-
-    concatObserv() {
-        merge(this.get_one_user(), this.getFriends()).subscribe(res => {
-            console.log(res);
-        });
-    }
+    // concatObserv() {
+    //     merge(this.get_one_user(), this.getFriends()).subscribe(res => {
+    //         console.log(res);
+    //     });
+    // }
 }
 
 
