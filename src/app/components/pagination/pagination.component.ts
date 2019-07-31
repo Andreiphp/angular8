@@ -20,7 +20,7 @@ export class PaginationComponent implements OnInit, OnDestroy {
     this.pagSrv.subscribePagination.pipe(takeUntil(this.UNSUBSCRIBE)).subscribe(() => {
       this.setPages();
     });
-   }
+  }
 
   ngOnInit() {
     this.curentPage = this.pagSrv.curentPage;
@@ -33,11 +33,24 @@ export class PaginationComponent implements OnInit, OnDestroy {
 
   setPages() {
     this.pages = [];
-    this.curentPage = this.pagSrv.curentPage;
+    this.curentPage = +this.pagSrv.curentPage;
     this.category = this.pagSrv.category;
     if (this.pagSrv.totalPages) {
       for (let i = 1; i <= this.pagSrv.totalPages; i++) {
+        if (this.curentPage === 1 && (i <= 3 || i === this.pagSrv.totalPages ||  i === this.curentPage)) {
           this.pages.push(i);
+        }
+        if (this.curentPage === this.pagSrv.totalPages && (i >= this.curentPage - 2 || i === 1 ||  i === this.curentPage)) {
+          this.pages.push(i);
+        }
+        if (this.curentPage > 1 && this.curentPage < this.pagSrv.totalPages) {
+          if (i + 1 === this.curentPage || i + 2 === this.curentPage
+            || i - 1 === this.curentPage
+            || i - 2 === this.curentPage
+             || i === this.curentPage) {
+            this.pages.push(i);
+          }
+        }
       }
     }
   }
