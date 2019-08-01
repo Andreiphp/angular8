@@ -25,32 +25,58 @@ export class PaginationComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.curentPage = this.pagSrv.curentPage;
     this.category = this.pagSrv.category;
-    console.log(this.pagSrv.curentPage);
-    console.log(this.pagSrv.totalRecords);
-    console.log(this.pagSrv.visibleCountItems);
     this.setPages();
   }
 
+ get getPrevPage() {
+    if (this.curentPage !== 1) {
+      return --this.curentPage;
+    } else {
+      return this.curentPage;
+    }
+  }
+ get getNextPage() {
+    if (this.curentPage !== this.pagSrv.totalPages) {
+      return ++this.curentPage;
+    } else {
+      return this.curentPage;
+    }
+  }
   setPages() {
     this.pages = [];
     this.curentPage = +this.pagSrv.curentPage;
     this.category = this.pagSrv.category;
-    if (this.pagSrv.totalPages) {
+    if (this.pagSrv.totalPages && this.pagSrv.totalPages > 5) {
+      this.pages.push(1);
       for (let i = 1; i <= this.pagSrv.totalPages; i++) {
-        if (this.curentPage === 1 && (i <= 3 || i === this.pagSrv.totalPages ||  i === this.curentPage)) {
-          this.pages.push(i);
-        }
-        if (this.curentPage === this.pagSrv.totalPages && (i >= this.curentPage - 2 || i === 1 ||  i === this.curentPage)) {
-          this.pages.push(i);
-        }
-        if (this.curentPage > 1 && this.curentPage < this.pagSrv.totalPages) {
-          if (i + 1 === this.curentPage || i + 2 === this.curentPage
-            || i - 1 === this.curentPage
-            || i - 2 === this.curentPage
-             || i === this.curentPage) {
+        if (this.curentPage === 2) {
+          if (i - 1 === this.curentPage || i - 2 === this.curentPage ||  i === this.curentPage) {
             this.pages.push(i);
           }
+        } else if (this.curentPage === this.pagSrv.totalPages - 1) {
+          if (i + 1 === this.curentPage || i + 2 === this.curentPage || i === this.curentPage) {
+            this.pages.push(i);
+          }
+        } else if (this.curentPage !== 1 && this.curentPage !== this.pagSrv.totalPages) {
+            if (i + 1 === this.curentPage || i - 1 === this.curentPage || i === this.curentPage) {
+              this.pages.push(i);
+            }
+        } else {
+          if (this.curentPage === 1) {
+            if ( i >= 2 && i <= 4) {
+              this.pages.push(i);
+            }
+          } else {
+            if ( i >= this.pagSrv.totalPages - 3  && i <= this.pagSrv.totalPages - 1) {
+              this.pages.push(i);
+            }
+          }
         }
+      }
+      this.pages.push(this.pagSrv.totalPages);
+    } else {
+      for (let i = 1; i <= this.pagSrv.totalPages; i++) {
+        this.pages.push(i);
       }
     }
   }

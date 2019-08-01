@@ -108,10 +108,13 @@
                     </div>
                   </div>
                 </div>
-                <div class="catal-product-list">
+                <div class="catal-product-list" *ngIf="products.length">
                   <div class="catal-product-item" *ngFor="let product of products">
                     <app-pre-view-product [product]="product "></app-pre-view-product>
                   </div>
+                </div>
+                <div class="catal-product-list" *ngIf="!products.length">
+                 <p>Товаров не найденно</p>
                 </div>
                 <div class="catal-pagination" *ngIf="products.length">
                   <app-pagination></app-pagination>
