@@ -13,10 +13,11 @@ export class SortComponent implements OnInit {
 
   ngOnInit() {
     this.ascDesc = true;
-    this.sort = 'name';
+    this.sort = 'title';
   }
   setTosort() {
     this.ascDesc = !this.ascDesc;
+    this.appSort.emit({sort: this.sort, tosort: this.ascDesc});
   }
   setSort() {
     this.appSort.emit({sort: this.sort, tosort: this.ascDesc});

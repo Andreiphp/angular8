@@ -10,7 +10,7 @@ export class PaginationServices {
   category: string;
   public subscribePagination = new Subject<any>();
   constructor() {
-    this.visibleCountItems = localStorage.getItem('visibleCount') ? +localStorage.getItem('visibleCount') : 1;
+    this.visibleCountItems = localStorage.getItem('visibleCount') ? +localStorage.getItem('visibleCount') : 3;
   }
 
   setConfig(curent, totalR, category) {

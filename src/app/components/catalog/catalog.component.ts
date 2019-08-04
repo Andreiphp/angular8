@@ -33,13 +33,13 @@ export class CatalogComponent implements OnInit, OnDestroy {
       this.category = params.category;
       this.page = params.page;
       this.initSort();
-      this.showProducts(this.category, this.page, this._PAGSRV.visibleCountItems);
+      this.showProducts(this.category, this.page, this._PAGSRV.visibleCountItems, this.sort, this.toSort);
     });
   }
 
   initSort() {
-    if (!this.sort || !this.toSort) {
-      this.sort = 'name';
+    if (!this.sort || this.toSort === undefined) {
+      this.sort = 'title';
       this.toSort = true;
     }
   }
@@ -47,8 +47,8 @@ export class CatalogComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
   }
-  showProducts(category, page, visibleCountItems) {
-    this._PRODSRV.getAllProducts(category, page, visibleCountItems)
+  showProducts(category, page, visibleCountItems, sort, toSort) {
+    this._PRODSRV.getAllProducts(category, page, visibleCountItems, sort, toSort)
       .pipe(takeUntil(this._UNSEBSCRIBE)).toPromise()
       .then(products => {
         this.fillProducts(products);
@@ -75,7 +75,9 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   appSort($event) {
     console.log($event);
-    this.showProducts(this.category, this.page, this._PAGSRV.visibleCountItems);
+    this.sort = $event.sort;
+    this.toSort = $event.tosort;
+    this.showProducts(this.category, this.page, this._PAGSRV.visibleCountItems, this.sort, this.toSort);
   }
   ngOnDestroy() {
     this._UNSEBSCRIBE.next();
