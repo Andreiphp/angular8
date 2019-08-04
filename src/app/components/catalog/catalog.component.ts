@@ -20,6 +20,8 @@ export class CatalogComponent implements OnInit, OnDestroy {
   public countPages: number;
   private category: number;
   private page: number;
+  private sort: string;
+  private toSort: boolean;
   private _UNSEBSCRIBE: Subject<any> = new Subject();
   constructor(
     private _ROUTER: ActivatedRoute,
@@ -30,19 +32,30 @@ export class CatalogComponent implements OnInit, OnDestroy {
       const params = this._ROUTER.snapshot.children[0].params;
       this.category = params.category;
       this.page = params.page;
-      this._PRODSRV.getAllProducts(this.category, this.page, this._PAGSRV.visibleCountItems)
-        .pipe(takeUntil(this._UNSEBSCRIBE)).toPromise()
-        .then(products => {
-          this.fillProducts(products);
-          this._PAGSRV.subscribePagination.next();
-        }).catch(error => {
-          console.log(error);
-        });
+      this.initSort();
+      this.showProducts(this.category, this.page, this._PAGSRV.visibleCountItems);
     });
+  }
+
+  initSort() {
+    if (!this.sort || !this.toSort) {
+      this.sort = 'name';
+      this.toSort = true;
+    }
   }
 
   ngOnInit() {
 
+  }
+  showProducts(category, page, visibleCountItems) {
+    this._PRODSRV.getAllProducts(category, page, visibleCountItems)
+      .pipe(takeUntil(this._UNSEBSCRIBE)).toPromise()
+      .then(products => {
+        this.fillProducts(products);
+        this._PAGSRV.subscribePagination.next();
+      }).catch(error => {
+        console.log(error);
+      });
   }
   fillProducts({ count: c, res: data }) {
     this.products = [];
@@ -58,6 +71,11 @@ export class CatalogComponent implements OnInit, OnDestroy {
         });
       });
     }
+  }
+
+  appSort($event) {
+    console.log($event);
+    this.showProducts(this.category, this.page, this._PAGSRV.visibleCountItems);
   }
   ngOnDestroy() {
     this._UNSEBSCRIBE.next();

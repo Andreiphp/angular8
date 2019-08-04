@@ -4,12 +4,11 @@
         <span>С <span>10</span> по <span>18</span> из <span>27</span> <span>(3 страниц)</span></span>
       </div>
       <div class="pag-btn">
-        <span><a (click) = 'goPrev()' class="pag-link"><i class="fa fa-angle-left"></i>Назад</a></span>
+        <span><button [disabled]="curentPage == 1" (click) = 'goPrev()' class="pag-link"><i class="fa fa-angle-left"></i>Назад</button></span>
         <ul>
           <li *ngFor="let p of pages"><a [routerLink]="['/catalog', category, p]" class="pag-link" [ngClass]="p == curentPage ? 'active' : ''" >{{p}}</a></li>
         </ul>
-        <span><a (click) = 'goNext()' class="pag-link">Вперед<i class="fa fa-angle-right"></i></a></span>
+        <span><button [disabled]="curentPage == pagSrv.totalPages" (click) = 'goNext()' class="pag-link">Вперед<i class="fa fa-angle-right"></i></button></span>
       </div>
   </div>
 </div>
-<k>dfgdf</k>

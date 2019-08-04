@@ -30,6 +30,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import {PaginationServices} from './services/pagination.services';
 import {ProductsService} from './services/products.service';
 import { CategoriesComponent } from './components/catalog/categories/categories.component';
+import { SortComponent } from './components/catalog/sort/sort.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +50,8 @@ import { CategoriesComponent } from './components/catalog/categories/categories.
     LatestProductSliderComponent,
     PreViewProductComponent,
     PaginationComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    SortComponent
   ],
   imports: [
     BrowserModule,

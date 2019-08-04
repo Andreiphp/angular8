@@ -97,14 +97,7 @@
                       </div>
                     </div>
                     <div class="catal-tool-select">
-                      <div class="catal-product-sort">
-                        <p>Sort By:</p>
-                        <select>
-                          <option selected>name</option>
-                          <option>pimo</option>
-                          <option>tiponio</option>
-                        </select>
-                      </div>
+                    <app-sort (appSort)="appSort($event)"></app-sort>
                     </div>
                   </div>
                 </div>
