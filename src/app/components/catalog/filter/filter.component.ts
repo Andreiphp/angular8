@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -9,8 +9,12 @@ import { ProductsService } from 'src/app/services/products.service';
 export class FilterComponent implements OnInit {
   public brands;
   public filterstate = {};
+  public start = 0;
+  public end = 200;
+  public step = 10;
+  public widht;
   constructor(private proSrv: ProductsService) { }
-
+  @ViewChild('rangeS', { static: false }) rangeS;
   ngOnInit() {
     this.proSrv.getAllBrandsByFilter().subscribe((data) => {
       this.brands = data;
@@ -18,6 +22,14 @@ export class FilterComponent implements OnInit {
     }, (error) => {
       console.log(error);
     });
+    setTimeout(() => {
+      this.getCoord();
+    });
+  }
+  getCoord() {
+    this.widht = this.rangeS.nativeElement.getBoundingClientRect().widht;
+    console.log();
+
   }
   filterSet($event, brand): void {
     if (this.filterstate.hasOwnProperty(brand.title)) {
@@ -25,8 +37,6 @@ export class FilterComponent implements OnInit {
     } else {
       this.filterstate[brand.title] = brand.title;
     }
-    console.log( this.filterstate);
-    
   }
 
 }
