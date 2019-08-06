@@ -19,8 +19,8 @@
     <div class="catal-list">
        <div #rangeS class="price-slider">
            <div class="price-slider-range"></div>
-           <span class="prise-sl-handle left"></span>
-           <span class="prise-sl-handle right"></span>
+           <span [ngStyle]="{'left.%': leftStep}" class="prise-sl-handle left" (mousedown)="mooveLeftEnter($event)" (mousemove)="mooveMoovLeft($event)" (mouseout)="moovleftUp($event)" (mouseover)="moovOverLeft($event)"></span>
+           <span [ngStyle]="" class="prise-sl-handle right"></span>
        </div>
     </div>
 </div>
