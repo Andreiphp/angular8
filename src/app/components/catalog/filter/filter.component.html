@@ -16,11 +16,16 @@
     <h2 class="catal-title">
         Диапазон цены
     </h2>
-    <div class="catal-list">
+    <div class="filter-range" (mousemove)="mooveMoovLeft($event)" (mousedown)="mooveLeftEnter($event)" (mouseup)="moovleftUp($event)" (mouseleave)="mouseoutLeft()">
        <div #rangeS class="price-slider">
            <div class="price-slider-range"></div>
-           <span [ngStyle]="{'left.%': leftStep}" class="prise-sl-handle left" (mousedown)="mooveLeftEnter($event)" (mousemove)="mooveMoovLeft($event)" (mouseout)="moovleftUp($event)" (mouseover)="moovOverLeft($event)"></span>
-           <span [ngStyle]="" class="prise-sl-handle right"></span>
+           <span id="rLeft" [ngStyle]="{'left.%': leftStep}" class="prise-sl-handle left"></span>
+           <span id="rRight" [ngStyle]="{'left.%': rigthStep}" class="prise-sl-handle right"></span>
+       </div>
+       <div class="price-box">
+           <span class="from">{{priceFrom}}( Бел.р)</span>
+           <span class="tab">-</span>
+           <span class="to">{{priceTo}}( Бел.р)</span>
        </div>
     </div>
 </div>
