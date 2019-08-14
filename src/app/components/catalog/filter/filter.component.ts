@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -26,7 +26,6 @@ export class FilterComponent implements OnInit {
   ngOnInit() {
     this.proSrv.getAllBrandsByFilter().subscribe((data) => {
       this.brands = data;
-      console.log(data);
     }, (error) => {
       console.log(error);
     });
@@ -34,6 +33,9 @@ export class FilterComponent implements OnInit {
       this.getCoord();
       this.setSteps();
     });
+  }
+  @HostListener('window:resize') Wresize() {
+    this.getCoord();
   }
   getCoord() {
     this.widht = this.rangeS.nativeElement.getBoundingClientRect();
@@ -89,13 +91,15 @@ export class FilterComponent implements OnInit {
         this.leftStep = p;
       }
     } else {
-      this.leftStep = p;
+      if (p >= 0) {
+        this.leftStep = p;
+      }
     }
     this.fixPosition = $event.pageX;
     this.setPrice(this.leftStep, 'left');
   }
   rightMoov(p: number, $event, moovment: string) {
-    if (this.rigthStep - 2 <= this.leftStep ) {
+    if (this.rigthStep - 2 <= this.leftStep) {
       if (moovment === 'left') {
         return;
       }
@@ -103,7 +107,9 @@ export class FilterComponent implements OnInit {
         this.rigthStep = p;
       }
     } else {
-      this.rigthStep = p;
+      if (p <= 100) {
+        this.rigthStep = p;
+      }
     }
     this.fixPosition = $event.pageX;
     this.setPrice(this.rigthStep, 'right');

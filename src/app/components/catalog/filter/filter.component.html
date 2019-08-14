@@ -1,19 +1,19 @@
 <div class="catal-block">
-    <h2 class="catal-title">
+    <h2 class="catalog-title catal-title">
         Бренды
     </h2>
     <div class="catal-list">
         <ul *ngIf="brands">
             <li *ngFor="let brand of brands">
                 <label>
-                    {{brand.title}} ({{brand.count}})
                     <input (change)="filterSet($event, brand)" type="checkbox">
+                    {{brand.title}} ({{brand.count}})
                 </label></li>
         </ul>
     </div>
 </div>
 <div class="catal-block">
-    <h2 class="catal-title">
+    <h2 class="catalog-title catal-title">
         Диапазон цены
     </h2>
     <div class="filter-range" (mousemove)="mooveMoovLeft($event)" (mousedown)="mooveLeftEnter($event)" (mouseup)="moovleftUp($event)" (mouseleave)="mouseoutLeft()">
@@ -23,9 +23,9 @@
            <span id="rRight" [ngStyle]="{'left.%': rigthStep}" class="prise-sl-handle right"></span>
        </div>
        <div class="price-box">
-           <span class="from">{{priceFrom}}( Бел.р)</span>
-           <span class="tab">-</span>
-           <span class="to">{{priceTo}}( Бел.р)</span>
+           <span class="from"><span class="f-prise">{{priceFrom}}</span>(Руб.)</span>
+           <span class="tab">&mdash;</span>
+           <span class="to"><span class="f-prise">{{priceTo}}</span>(Руб.)</span>
        </div>
     </div>
 </div>
