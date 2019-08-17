@@ -1,24 +1,25 @@
-<div class="nutrition-header-wr" (window:resize)= "resize($event)">
+<div class="nutrition-header-wr" (window:resize)="resize($event)">
     <header>
         <div class="header-area">
             <div class="wr">
                 <div class="center">
                     <div class="header-search">
                         <form>
-                           <div class="group">
+                            <div class="group">
                                 <input type="text" placeholder="Поиск в каталоге...">
                                 <div class="search-input">
-                                    <button class="search-btn" type='button'><img alt='' src="../../../assets//image//icon/magnifier_icon-icons.com_48267.png"></button>
+                                    <button class="search-btn" type='button'><img alt=''
+                                            src="../../../assets//image//icon/magnifier_icon-icons.com_48267.png"></button>
                                 </div>
-                           </div>
+                            </div>
                         </form>
                     </div>
                     <div class="header-logo">
-                            <div class="logo">
-                                    <a routerLink="/" title="Логотип">
-                                        <img src="../../../assets/image/logo/pedona.png" alt="логотип компании">
-                                    </a>
-                                </div>
+                        <div class="logo">
+                            <a routerLink="/" title="Логотип">
+                                <img src="../../../assets/image/logo/pedona.png" alt="логотип компании">
+                            </a>
+                        </div>
                     </div>
                     <div class="header-cart">
                         <div class="header-cart-area">
@@ -27,13 +28,14 @@
                                     <img src="../../../assets/image/icon/14062.png">
                                     <span class="count-style">52</span>
                                 </button>
-                                <div @openBascket *ngIf ="flagOpenSinCart" class="drop-menu">
+                                <div @openBascket *ngIf="flagOpenSinCart" class="drop-menu">
                                     <div class="shop-cart-content">
                                         <ul class="ul-cart">
                                             <li class="singl-cart-product">
                                                 <div class="sing-car-img">
                                                     <a href="">
-                                                        <img src="../../../assets//image//logo/nastolnyie-lampyi-315x400.png">
+                                                        <img
+                                                            src="../../../assets//image//logo/nastolnyie-lampyi-315x400.png">
                                                     </a>
                                                     <span class="count-cart">2</span>
                                                 </div>
@@ -52,7 +54,8 @@
                                             <li class="singl-cart-product">
                                                 <div class="sing-car-img">
                                                     <a href="">
-                                                        <img alt='' src="../../../assets//image//logo/nastolnyie-lampyi-315x400.png">
+                                                        <img alt=''
+                                                            src="../../../assets//image//logo/nastolnyie-lampyi-315x400.png">
                                                     </a>
                                                     <span class="count-cart">2</span>
                                                 </div>
@@ -71,7 +74,8 @@
                                             <li class="singl-cart-product">
                                                 <div class="sing-car-img">
                                                     <a href="">
-                                                        <img alt='' src="../../../assets//image//logo/nastolnyie-lampyi-315x400.png">
+                                                        <img alt=''
+                                                            src="../../../assets//image//logo/nastolnyie-lampyi-315x400.png">
                                                     </a>
                                                     <span class="count-cart">2</span>
                                                 </div>
@@ -106,24 +110,21 @@
         </div>
         <div class='wr'>
             <nav class="menu">
-                <a class="menu-toggle full" (click)='showMainMenu()' [ngClass]="!flagMainMenu ? ' menu-toggle full rotate' : 'menu-toggle full'">
+                <a class="menu-toggle full" (click)='showMainMenu()'
+                    [ngClass]="!flagMainMenu ? ' menu-toggle full rotate' : 'menu-toggle full'">
                     <i class="fa fa-bars"></i>
                     Меню
                 </a>
-                <div id="menu-main" class="menu-main" @openBascket  *ngIf="!flagMainMenu">
+                <div id="menu-main" class="menu-main" @openBascket *ngIf="!flagMainMenu">
                     <span>
-                        <a class="menu-link"
-                            routerLinkActive="active_link"
-                            [routerLinkActiveOptions]="{exact:true}"
+                        <a class="menu-link" routerLinkActive="active_link" [routerLinkActiveOptions]="{exact:true}"
                             routerLink="">Главная
                         </a>
                     </span>
                     <!-- <span class="show-menu"  (click)='openMobileMenu($event)' (mouseover) ="flegSubCat = true" (mouseleave) ="flegSubCat = false"> -->
                     <span class="show-menu">
-                            <!-- [ngClass]="flegSubCat ? 'menu-link catalog_link rotate_l' : 'menu-link catalog_link'" -->
-                        <a id="m"
-                            class="menu-link catalog_link"
-                            [routerLink]="['catalog', '1', '1']"
+                        <!-- [ngClass]="flegSubCat ? 'menu-link catalog_link rotate_l' : 'menu-link catalog_link'" -->
+                        <a id="m" class="menu-link catalog_link" [routerLink]="['catalog', '1', '1']"
                             routerLinkActive="active_link">Каталог
                         </a>
                         <!-- <div class="menu_catalog_list" @openBascket *ngIf='flegSubCat'>
@@ -135,21 +136,15 @@
                         </div> -->
                     </span>
                     <span>
-                        <a  class="menu-link"
-                            routerLinkActive="active_link"
-                            routerLink="/sale">Акции
+                        <a class="menu-link" routerLinkActive="active_link" routerLink="/sale">Акции
                         </a>
                     </span>
                     <span>
-                        <a class="menu-link"
-                           routerLinkActive="active_link"
-                           routerLink="/about">О нас
+                        <a class="menu-link" routerLinkActive="active_link" routerLink="/about">О нас
                         </a>
                     </span>
                     <span>
-                        <a class="menu-link"
-                            routerLinkActive="active_link"
-                            routerLink="/contact">Контакты
+                        <a class="menu-link" routerLinkActive="active_link" routerLink="/contact">Контакты
                         </a>
                     </span>
                 </div>

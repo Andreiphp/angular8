@@ -16,6 +16,7 @@
       .product-image
         overflow: hidden
         position: relative
+        text-align: center
         .action-links
           position: absolute
           display: flex
@@ -30,9 +31,11 @@
           height: 50px
           line-height: 26px
           padding: 12px 0
-          width: 200px
+          width: 100%
+          max-width: 210px
           margin: 0 auto
           box-shadow: 1px 1px 0 0 #e8e8e8
+          background-color: white
           visibility: hidden
           backface-visibility: hidden
           transition: all 0.4s ease-out
@@ -43,8 +46,8 @@
             width: 50px
             border-right: 1px solid #ebebeb
             i
-              font-size: 18px
-              font-weight: bold
+              font-size: 16px
+              font-weight: 100
               backface-visibility: hidden
               &:hover
                 color: red
@@ -66,12 +69,11 @@
         .label-sale
           left: 20px
           background-color: #cc2121
-        a
-          display: block
-          width: 100%
         img
-          width: 100%
+          display: inline
           height: auto
+          width: auto
+          max-height: 210px
       .product-caption
         padding-top: 15px
         .product-name
