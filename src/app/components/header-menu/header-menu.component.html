@@ -124,7 +124,7 @@
                     <!-- <span class="show-menu"  (click)='openMobileMenu($event)' (mouseover) ="flegSubCat = true" (mouseleave) ="flegSubCat = false"> -->
                     <span class="show-menu">
                         <!-- [ngClass]="flegSubCat ? 'menu-link catalog_link rotate_l' : 'menu-link catalog_link'" -->
-                        <a id="m" class="menu-link catalog_link" [routerLink]="['catalog', '1', '1']"
+                        <a id="m" class="menu-link catalog_link" [routerLink]="['/catalog/view', '1', '1']"
                             routerLinkActive="active_link">Каталог
                         </a>
                         <!-- <div class="menu_catalog_list" @openBascket *ngIf='flegSubCat'>

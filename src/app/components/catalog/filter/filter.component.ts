@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -10,7 +10,7 @@ export class FilterComponent implements OnInit {
   public priceFrom = 0;
   public priceTo = 200;
   public brands;
-  public filterstate = {};
+  public filterstate = new Set();
   public end = 200;
   public step = 20;
   public flafMoovLeft = false;
@@ -23,6 +23,7 @@ export class FilterComponent implements OnInit {
   private fixPosition = 0;
   private differenceL = 0;
   private differenceR = 0;
+  @Output() emitfilter: EventEmitter<any> = new EventEmitter<any>();
   get infoCoordinate() {
     return this.rangeS.nativeElement.getBoundingClientRect();
   }
@@ -39,10 +40,10 @@ export class FilterComponent implements OnInit {
     });
   }
   filterSet($event, brand): void {
-    if (this.filterstate.hasOwnProperty(brand.title)) {
-      delete this.filterstate[brand.title];
+    if (this.filterstate.has(brand.title)) {
+     this.filterstate.delete(brand.title);
     } else {
-      this.filterstate[brand.title] = brand.title;
+      this.filterstate.add(brand.title);
     }
   }
 
@@ -169,6 +170,15 @@ export class FilterComponent implements OnInit {
       this.priceFrom = ydf ? ydf : this.arraySteps[0];
     } else {
       this.priceTo = ydf ? ydf : this.arraySteps[0];
+    }
+  }
+  startFilter() {
+    if (this.filterstate.size || this.priceFrom !== 0 || this.priceTo !== 200) {
+      this.emitfilter.emit({
+        brand: this.filterstate,
+        priseto: this.priceTo,
+        priceFrom: this.priceFrom
+      });
     }
   }
 

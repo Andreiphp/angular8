@@ -6,7 +6,7 @@
       <div class="pag-btn">
         <span><button [disabled]="curentPage == 1" (click) = 'goPrev()' class="pag-link"><i class="fa fa-angle-left"></i>Назад</button></span>
         <ul>
-          <li *ngFor="let p of pages"><a [routerLink]="['/catalog', category, p]" class="pag-link" [ngClass]="p == curentPage ? 'active' : ''" >{{p}}</a></li>
+          <li *ngFor="let p of pages"><a [routerLink]="['/catalog/view', category, p]" class="pag-link" [ngClass]="p == curentPage ? 'active' : ''" >{{p}}</a></li>
         </ul>
         <span><button [disabled]="curentPage == pagSrv.totalPages" (click) = 'goNext()' class="pag-link">Вперед<i class="fa fa-angle-right"></i></button></span>
       </div>

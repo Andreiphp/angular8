@@ -9,13 +9,15 @@ import { AdminRedactProdComponent } from '../../components/admin/admin-redact-pr
 import { AuthGuard } from '../../guards/auth.guard';
 import { LoginComponent } from '../../components/login/login.component';
 import { TestComponent } from '../../components/test/test.component';
-
+import {SearchComponent} from '../../components/catalog/search/search.component';
+import {CatalogViewComponent} from '../../components/catalog/catalog-view/catalog-view.component';
 const childrenRouter: Routes = [
     { path: 'newproduct', component: AdminNewProductComponent },
     { path: 'redactproduct', component: AdminRedactProdComponent }
 ];
 const catalogChildren: Routes = [
-    { path: ':category/:page', component: CatalogComponent, data: { animation: 'catalogAnimate' }},
+  { path: 'search/', component: SearchComponent, data: { animation: 'catalogAnimate' }},
+    { path: 'view/:category/:page', component: CatalogViewComponent, data: { animation: 'catalogAnimate' }},
 ];
 
 const routes: Routes = [
@@ -25,7 +27,6 @@ const routes: Routes = [
         children: catalogChildren,
         data: { animation: 'catalogAnimate' },
     },
-
     { path: 'view-product', component: ViewProductComponent, pathMatch: 'full' },
     { path: 'login', component: LoginComponent, pathMatch: 'full' },
     { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], children: childrenRouter },

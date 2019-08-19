@@ -32,6 +32,8 @@ import {ProductsService} from './services/products.service';
 import { CategoriesComponent } from './components/catalog/categories/categories.component';
 import { SortComponent } from './components/catalog/sort/sort.component';
 import { FilterComponent } from './components/catalog/filter/filter.component';
+import { SearchComponent } from './components/catalog/search/search.component';
+import { CatalogViewComponent } from './components/catalog/catalog-view/catalog-view.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +55,9 @@ import { FilterComponent } from './components/catalog/filter/filter.component';
     PaginationComponent,
     CategoriesComponent,
     SortComponent,
-    FilterComponent
+    FilterComponent,
+    SearchComponent,
+    CatalogViewComponent
   ],
   imports: [
     BrowserModule,

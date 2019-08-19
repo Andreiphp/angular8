@@ -35,7 +35,7 @@ export class PaginationComponent implements OnInit, OnDestroy {
     } else {
       page = this.curentPage;
     }
-    this.router.navigate([`/catalog/${this.category}/${page}`]);
+    this.router.navigate([`/view/catalog/${this.category}/${page}`]);
   }
   goNext() {
     let page;
@@ -44,7 +44,7 @@ export class PaginationComponent implements OnInit, OnDestroy {
     } else {
       page = this.curentPage;
     }
-    this.router.navigate([`/catalog/${this.category}/${page}`]);
+    this.router.navigate([`/catalog/view/${this.category}/${page}`]);
   }
 
   setPages() {

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { divTrigger } from './catalog-animations';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil, switchMap } from 'rxjs/operators';
 import { ProductsService } from 'src/app/services/products.service';
@@ -24,17 +24,8 @@ export class CatalogComponent implements OnInit, OnDestroy {
   private toSort: boolean;
   private _UNSEBSCRIBE: Subject<any> = new Subject();
   constructor(
-    private _ROUTER: ActivatedRoute,
-    private _PRODSRV: ProductsService,
-    private _PAGSRV: PaginationServices,
+    private route: Router
   ) {
-    this._ROUTER.children[0].params.subscribe(data => {
-      const params = this._ROUTER.snapshot.children[0].params;
-      this.category = params.category;
-      this.page = params.page;
-      this.initSort();
-      this.showProducts(this.category, this.page, this._PAGSRV.visibleCountItems, this.sort, this.toSort);
-    });
   }
 
   initSort() {
@@ -47,37 +38,17 @@ export class CatalogComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
   }
-  showProducts(category, page, visibleCountItems, sort, toSort) {
-    this._PRODSRV.getAllProducts(category, page, visibleCountItems, sort, toSort)
-      .pipe(takeUntil(this._UNSEBSCRIBE)).toPromise()
-      .then(products => {
-        this.fillProducts(products);
-        this._PAGSRV.subscribePagination.next();
-      }).catch(error => {
-        console.log(error);
-      });
-  }
-  fillProducts({ count: c, res: data }) {
-    this.products = [];
-    if (data && data.length) {
-      this._PAGSRV.setConfig(this.page, c.count, this.category);
-      data.forEach((product: Product) => {
-        this.products.push({
-          id: product.id,
-          title: product.title,
-          price: product.price,
-          state: 'all',
-          img: product.img
-        });
-      });
-    }
+
+  startSearch($event) {
+    console.log($event);
+    this.route.navigate(['/catalog/search']);
   }
 
   appSort($event) {
     console.log($event);
     this.sort = $event.sort;
     this.toSort = $event.tosort;
-    this.showProducts(this.category, this.page, this._PAGSRV.visibleCountItems, this.sort, this.toSort);
+   // this.showProducts(this.category, this.page, this._PAGSRV.visibleCountItems, this.sort, this.toSort);
   }
   ngOnDestroy() {
     this._UNSEBSCRIBE.next();
