@@ -15,11 +15,11 @@ export class PaginationServices {
     this.productsLength  = this.productsLength ? this.productsLength : 0;
   }
 
-  setConfig(curent, totalR, category, productsLength) {
+  setConfig(curent, totalR, category, productsLength?) {
     this.curentPage = curent,
     this.totalRecords = totalR;
     this.category = category;
-    this.productsLength = productsLength;
+  //  this.productsLength = productsLength;
     this.setTotalPages();
   }
 

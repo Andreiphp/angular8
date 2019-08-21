@@ -11,48 +11,11 @@
               <app-categories [categories_id]="category"></app-categories>
             </div>
           </div>
-          <app-filter></app-filter>
+          <app-filter (emitfilter)="startSearch($event)"></app-filter>
         </aside>
       </div>
       <div class="catal-right">
-        <main>
-            
-          <div class="catal-nav-top">
-            <div class="catal-tool-bar">
-              <div class="catal-tool-inner">
-                <div class="catal-view-mode">
-                  <ul>
-                    <li><i class="fa fa-table"></i></li>
-                    <li><i class="fa fa-bars"></i></li>
-                  </ul>
-                </div>
-                <!-- <div class="catal-tool-count">
-                  <span>
-                    Showing 10 to 18 of 27
-                  </span>
-                </div> -->
-              </div>
-              <div class="catal-tool-select">
-                <app-sort (appSort)="appSort($event)"></app-sort>
-              </div>
-            </div>
-          </div>
-          <div class="catal-pagination" *ngIf="products.length">
-              <app-pagination [flagVisible]="false"></app-pagination>
-            </div>
-          <div class="catal-product-list" *ngIf="products.length">
-            
-            <div class="catal-product-item" *ngFor="let product of products">
-              <app-pre-view-product [product]="product "></app-pre-view-product>
-            </div>
-          </div>
-          <div class="catal-product-list" *ngIf="!products.length">
-            <p>Товаров не найденно</p>
-          </div>
-          <div class="catal-pagination" *ngIf="products.length">
-            <app-pagination [flagVisible]="true"></app-pagination>
-          </div>
-        </main>
+        <router-outlet></router-outlet>
       </div>
     </div>
   </div>

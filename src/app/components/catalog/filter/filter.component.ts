@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -23,6 +23,7 @@ export class FilterComponent implements OnInit {
   private fixPosition = 0;
   private differenceL = 0;
   private differenceR = 0;
+  @Output() emitfilter: EventEmitter<any> = new EventEmitter<any>();
   get infoCoordinate() {
     return this.rangeS.nativeElement.getBoundingClientRect();
   }
@@ -47,7 +48,7 @@ export class FilterComponent implements OnInit {
   }
   filterSet($event, brand): void {
     if (this.filterstate.has(brand.title)) {
-      this.filterstate.delete(brand.title);
+     this.filterstate.delete(brand.title);
     } else {
       this.filterstate.add(brand.title);
     }
@@ -178,10 +179,14 @@ export class FilterComponent implements OnInit {
       this.priceTo = ydf ? ydf : this.arraySteps[0];
     }
   }
-  showFilterProducts() {
-    console.log(this.filterstate.size);
-    console.log(this.priceFrom);
-    console.log(this.priceTo);
+  startFilter() {
+    if (this.filterstate.size || this.priceFrom !== 0 || this.priceTo !== 200) {
+      this.emitfilter.emit({
+        brand: this.filterstate,
+        priseto: this.priceTo,
+        priceFrom: this.priceFrom
+      });
+    }
   }
 
 }

@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { divTrigger } from './catalog-animations';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil, switchMap } from 'rxjs/operators';
 import { ProductsService } from 'src/app/services/products.service';
 import { Product } from '../../interfaces/product.interfaces';
-import { PaginationServices } from 'src/app/services/pagination.services';
+// import { PaginationServices } from 'src/app/services/pagination.services';
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
@@ -22,19 +22,11 @@ export class CatalogComponent implements OnInit, OnDestroy {
   private page: number;
   private sort: string;
   private toSort: boolean;
-  private _UNSEBSCRIBE: Subject<any> = new Subject();
+  private _unsebsscribe: Subject<any> = new Subject();
   constructor(
-    private _ROUTER: ActivatedRoute,
-    private _PRODSRV: ProductsService,
-    private _PAGSRV: PaginationServices,
+    private route: Router,
+    private prodSrv: ProductsService
   ) {
-    this._ROUTER.children[0].params.subscribe(data => {
-      const params = this._ROUTER.snapshot.children[0].params;
-      this.category = params.category;
-      this.page = params.page;
-      this.initSort();
-      this.showProducts(this.category, this.page, this._PAGSRV.visibleCountItems, this.sort, this.toSort);
-    });
   }
 
   initSort() {
@@ -47,29 +39,14 @@ export class CatalogComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
   }
-  showProducts(category, page, visibleCountItems, sort, toSort) {
-    this._PRODSRV.getAllProducts(category, page, visibleCountItems, sort, toSort)
-      .pipe(takeUntil(this._UNSEBSCRIBE)).toPromise()
-      .then(products => {
-        this.fillProducts(products);
-        this._PAGSRV.subscribePagination.next();
-      }).catch(error => {
-        console.log(error);
-      });
-  }
-  fillProducts({ count: c, res: data }) {
-    this.products = [];
-    if (data && data.length) {
-      this._PAGSRV.setConfig(this.page, c.count, this.category, data.length);
-      data.forEach((product: Product) => {
-        this.products.push({
-          id: product.id,
-          title: product.title,
-          price: product.price,
-          state: 'all',
-          img: product.img
-        });
-      });
+
+  startSearch($event) {
+    this.prodSrv.searchData = $event;
+    const path = this.route.parseUrl(this.route.url).root.children.primary.segments[2].path === '1';
+    if ((/search/g).test(this.route.url) && path) {
+        this.prodSrv.emitSearch.next($event);
+    } else {
+      this.route.navigate(['/catalog/search/1']);
     }
   }
 
@@ -77,11 +54,11 @@ export class CatalogComponent implements OnInit, OnDestroy {
     console.log($event);
     this.sort = $event.sort;
     this.toSort = $event.tosort;
-    this.showProducts(this.category, this.page, this._PAGSRV.visibleCountItems, this.sort, this.toSort);
+   // this.showProducts(this.category, this.page, this._PAGSRV.visibleCountItems, this.sort, this.toSort);
   }
   ngOnDestroy() {
-    this._UNSEBSCRIBE.next();
-    this._UNSEBSCRIBE.complete();
+    this._unsebsscribe.next();
+    this._unsebsscribe.complete();
   }
 
 }
