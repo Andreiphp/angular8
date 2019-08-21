@@ -8,7 +8,8 @@
                 <label>
                     <input (change)="filterSet($event, brand)" type="checkbox">
                     {{brand.title}} ({{brand.count}})
-                </label></li>
+                </label>
+            </li>
         </ul>
     </div>
 </div>
@@ -31,4 +32,7 @@
             <span class="to"><span class="f-prise">{{priceTo}}</span></span>
         </div>
     </div>
+</div>
+<div class="filter-show">
+    <button [ngClass]="{'disableFilter': disableFilter}" [disabled]="disableFilter" (click)="showFilterProducts()">показать</button>
 </div>

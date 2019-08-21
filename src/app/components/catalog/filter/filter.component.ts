@@ -10,7 +10,7 @@ export class FilterComponent implements OnInit {
   public priceFrom = 0;
   public priceTo = 200;
   public brands;
-  public filterstate = {};
+  public filterstate = new Set();
   public end = 200;
   public step = 20;
   public flafMoovLeft = false;
@@ -26,6 +26,13 @@ export class FilterComponent implements OnInit {
   get infoCoordinate() {
     return this.rangeS.nativeElement.getBoundingClientRect();
   }
+  get disableFilter() {
+    if (this.filterstate.size || this.priceFrom !== 0 || this.priceTo !== 200) {
+      return false;
+    } else {
+      return true;
+    }
+  }
   constructor(private proSrv: ProductsService) { }
   @ViewChild('rangeS', { static: false }) rangeS;
   ngOnInit() {
@@ -39,10 +46,10 @@ export class FilterComponent implements OnInit {
     });
   }
   filterSet($event, brand): void {
-    if (this.filterstate.hasOwnProperty(brand.title)) {
-      delete this.filterstate[brand.title];
+    if (this.filterstate.has(brand.title)) {
+      this.filterstate.delete(brand.title);
     } else {
-      this.filterstate[brand.title] = brand.title;
+      this.filterstate.add(brand.title);
     }
   }
 
@@ -170,6 +177,11 @@ export class FilterComponent implements OnInit {
     } else {
       this.priceTo = ydf ? ydf : this.arraySteps[0];
     }
+  }
+  showFilterProducts() {
+    console.log(this.filterstate.size);
+    console.log(this.priceFrom);
+    console.log(this.priceTo);
   }
 
 }

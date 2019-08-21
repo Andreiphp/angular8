@@ -46,7 +46,7 @@
         align-items: center
         justify-content: flex-start
         width: 100%
-        color: #cc2121
+        color: #000000
         padding-top: 20px
         text-align: center
         .tab
@@ -58,11 +58,37 @@
             display: inline-block
             width: 50px
             margin-right: 5px
-            border: 1px solid #cc2121
+            border-bottom: 1px solid #e8d5d5
             .f-prise
                 display: inline-block
                 text-align: left
                 
+.filter-show
+    padding-left: 5px
+    button
+        height: 40px
+        line-height: 40px
+        padding: 0 20px
+        border: 0
+        font-size: 13px
+        font-weight: 500
+        text-transform: uppercase
+        background: #000000
+        color: #ffffff
+        outline: none
+        cursor: pointer
+        transition: .2s
+        &:hover
+            box-shadow: -3px -3px 0px #948888
+        &:active
+            box-shadow: 0px 0px 0px #948888
+            margin-left: -3px
+            margin-top: -3px
 
+.filter-show
+    .disableFilter
+        background-color: #ebebeb
+        &:hover
+            box-shadow: 0px 0px 0px #ffffff
 
-    
+  

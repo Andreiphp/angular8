@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { PaginationServices } from '../../services/pagination.services';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -13,14 +13,29 @@ export class PaginationComponent implements OnInit, OnDestroy {
   public pages = [];
   public curentPage: number;
   public category: string;
-  private UNSUBSCRIBE = new Subject<any>();
+  private unsubscribe = new Subject<any>();
+  @Input() flagVisible;
   constructor(
     public pagSrv: PaginationServices,
     private router: Router
   ) {
-    this.pagSrv.subscribePagination.pipe(takeUntil(this.UNSUBSCRIBE)).subscribe(() => {
+    this.pagSrv.subscribePagination.pipe(takeUntil(this.unsubscribe)).subscribe(() => {
       this.setPages();
     });
+  }
+  get fromVisiblePages() {
+    if (this.curentPage === 1) {
+      return 1;
+    } else {
+      return (this.curentPage - 1) * this.pagSrv.visibleCountItems;
+    }
+  }
+  get toVisiblePages() {
+    if (this.curentPage === 1) {
+      return this.fromVisiblePages + this.pagSrv.productsLength - 1;
+    } else {
+      return this.fromVisiblePages + this.pagSrv.productsLength;
+    }
   }
 
   ngOnInit() {
@@ -86,8 +101,8 @@ export class PaginationComponent implements OnInit, OnDestroy {
     }
   }
   ngOnDestroy() {
-    this.UNSUBSCRIBE.next();
-    this.UNSUBSCRIBE.complete();
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
 

@@ -60,7 +60,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
   fillProducts({ count: c, res: data }) {
     this.products = [];
     if (data && data.length) {
-      this._PAGSRV.setConfig(this.page, c.count, this.category);
+      this._PAGSRV.setConfig(this.page, c.count, this.category, data.length);
       data.forEach((product: Product) => {
         this.products.push({
           id: product.id,

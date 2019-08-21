@@ -1,9 +1,9 @@
 <div class="pagination">
   <div class="pag-wr">
       <div class="pag-view">
-        <span>С <span>10</span> по <span>18</span> из <span>27</span> <span>(3 страниц)</span></span>
+        <span>С <span>{{fromVisiblePages}}</span> по <span>{{toVisiblePages}}</span> из <span>{{pagSrv.totalRecords}}</span></span>
       </div>
-      <div class="pag-btn">
+      <div class="pag-btn" *ngIf="pagSrv.totalPages && flagVisible">
         <span><button [disabled]="curentPage == 1" (click) = 'goPrev()' class="pag-link"><i class="fa fa-angle-left"></i>Назад</button></span>
         <ul>
           <li *ngFor="let p of pages"><a [routerLink]="['/catalog', category, p]" class="pag-link" [ngClass]="p == curentPage ? 'active' : ''" >{{p}}</a></li>

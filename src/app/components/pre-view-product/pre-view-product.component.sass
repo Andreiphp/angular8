@@ -1,39 +1,45 @@
 \:host
-  display: block
   position: relative
+  display: block
+  height: 100%
+  width: 100%
   transition-property: transform,-webkit-transform
   .product-layout
+    display: inline-flex
     width: 100%
-    margin-top: 5px
-    cursor: pointer
+    height: 100%
     padding: 15px
-    display: inline-block
+    margin-top: 5px
     transition: 0.7s
+    cursor: pointer
     &:hover
       box-shadow: 0 0 20px 0 rgba(41, 44, 58, 0.15)
     .product-inner
+      display: flex
+      flex-direction: column
+      height: auto
       width: 100%
       .product-image
-        overflow: hidden
         position: relative
+        overflow: hidden
         text-align: center
         .action-links
           position: absolute
-          display: flex
-          justify-content: space-around
-          align-items: center
           left: 0
           right: 0
           bottom: 20px
-          text-align: center
-          z-index: 3
-          opacity: 1
+          display: flex
+          align-items: center
+          justify-content: space-around
           height: 50px
-          line-height: 26px
-          padding: 12px 0
           width: 100%
           max-width: 210px
           margin: 0 auto
+          padding: 12px 0
+          text-align: center
+          z-index: 3
+          opacity: 1
+          line-height: 26px
           box-shadow: 1px 1px 0 0 #e8e8e8
           background-color: white
           visibility: hidden
@@ -41,9 +47,9 @@
           transition: all 0.4s ease-out
           transform: perspective(600px) rotateX(90deg)
           a
-            line-height: 0
             display: block
             width: 50px
+            line-height: 0
             border-right: 1px solid #ebebeb
             i
               font-size: 16px
@@ -54,13 +60,13 @@
         .product-label
           position: absolute
           top: 20px
-          font-size: 12px
           height: 23px
           width: 50px
+          font-size: 12px
+          font-weight: 400
           line-height: 23px
           text-align: center
           text-transform: capitalize
-          font-weight: 400
           border-radius: 3px
           color: #fff
         .label-new
@@ -75,27 +81,34 @@
           width: auto
           max-height: 210px
       .product-caption
+        display: inline-flex
+        flex-direction: column
+        justify-content: space-between
+        flex-grow: 1
         padding-top: 15px
         .product-name
+          position: relative
           display: -webkit-box
-          text-overflow: ellipsis
           max-height: 3em
-          font-weight: 400
           margin-bottom: 11px
           margin-top: 8px
-          text-transform: capitalize
-          position: relative
-          overflow: hidden
+          font-weight: 400
           line-height: 1.5
+          text-overflow: ellipsis
+          text-transform: capitalize
+          overflow: hidden
           a
-            font-size: 14px
             position: relative
+            display: block
+            width: 100%
+            font-size: 14px
+            
             &:after
               content: ""
-              display: block
               bottom: -2px
               left: 0
               right: 0
+              display: block
               width: 0
               height: 1px
               background-color: #cc2121
@@ -104,11 +117,11 @@
               width: 100%
       .product-price
         .old-price
+          display: inline-block
           font-size: 14px
           font-weight: 400
           padding-right: 8px
           text-decoration: line-through
-          display: inline-block
         .new-price
           font-size: 18px
           font-weight: 500

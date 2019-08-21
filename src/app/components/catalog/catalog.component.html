@@ -16,6 +16,7 @@
       </div>
       <div class="catal-right">
         <main>
+            
           <div class="catal-nav-top">
             <div class="catal-tool-bar">
               <div class="catal-tool-inner">
@@ -25,18 +26,22 @@
                     <li><i class="fa fa-bars"></i></li>
                   </ul>
                 </div>
-                <div class="catal-tool-count">
+                <!-- <div class="catal-tool-count">
                   <span>
                     Showing 10 to 18 of 27
                   </span>
-                </div>
+                </div> -->
               </div>
               <div class="catal-tool-select">
                 <app-sort (appSort)="appSort($event)"></app-sort>
               </div>
             </div>
           </div>
+          <div class="catal-pagination" *ngIf="products.length">
+              <app-pagination [flagVisible]="false"></app-pagination>
+            </div>
           <div class="catal-product-list" *ngIf="products.length">
+            
             <div class="catal-product-item" *ngFor="let product of products">
               <app-pre-view-product [product]="product "></app-pre-view-product>
             </div>
@@ -45,7 +50,7 @@
             <p>Товаров не найденно</p>
           </div>
           <div class="catal-pagination" *ngIf="products.length">
-            <app-pagination></app-pagination>
+            <app-pagination [flagVisible]="true"></app-pagination>
           </div>
         </main>
       </div>

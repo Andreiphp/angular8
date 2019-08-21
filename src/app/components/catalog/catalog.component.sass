@@ -74,10 +74,11 @@
                 .catal-prod-wr
                     padding-bottom: 80px     
 .catal-product-item
-    display: block
+    display: inline-flex
     width: calc(100% / 4)
     flex-shrink: 0
-    height: 100%
+    justify-content: center
+    height: auto
     position: relative
 .catal-pagination
     margin-top: 50px
@@ -89,3 +90,22 @@
     letter-spacing: -.05em
     text-transform: capitalize
     margin-bottom: 20px
+@media only screen and (max-width: 1340px)    
+    .catal-product-item
+        width: calc(100% / 3)
+@media only screen and (max-width: 1080px)
+    .row   
+        .catal-product-item
+            width: calc(100% / 2)  
+        .catal-left
+            flex-basis: 25%                      
+@media only screen and (max-width: 900px)
+           
+    .row
+        flex-direction: column
+        .catal-left
+            flex-basis: 25%
+            order: 1
+            width: 50%
+        .catal-right
+            order: 0    

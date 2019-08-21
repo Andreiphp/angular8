@@ -8,15 +8,18 @@ export class PaginationServices {
   visibleCountItems: number;
   totalPages: number;
   category: string;
+  productsLength: number;
   public subscribePagination = new Subject<any>();
   constructor() {
     this.visibleCountItems = localStorage.getItem('visibleCount') ? +localStorage.getItem('visibleCount') : 6;
+    this.productsLength  = this.productsLength ? this.productsLength : 0;
   }
 
-  setConfig(curent, totalR, category) {
+  setConfig(curent, totalR, category, productsLength) {
     this.curentPage = curent,
     this.totalRecords = totalR;
     this.category = category;
+    this.productsLength = productsLength;
     this.setTotalPages();
   }
 
