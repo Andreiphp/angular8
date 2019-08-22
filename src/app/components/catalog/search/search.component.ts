@@ -26,20 +26,33 @@ export class SearchComponent implements OnInit, OnDestroy {
   ) {
     this.prodSrv.emitSearch.pipe(takeUntil(this._unsubscribe)).subscribe(data => {
       console.log(data);
+      const confSearch = this.prodSrv.searchData;
+      this.showSearchProducts(confSearch, this.page, this._pagSrv.visibleCountItems,
+        this._sortSrv.sort,
+        this._sortSrv.toSort);
     });
   }
 
   ngOnInit() {
     this.router.params.subscribe(params => {
+      this.page = params.page;
       const confSearch = this.prodSrv.searchData;
-      this.showSearchProducts(confSearch, params.page, this._pagSrv.visibleCountItems,
+      this.showSearchProducts(confSearch, this.page, this._pagSrv.visibleCountItems,
         this._sortSrv.sort,
         this._sortSrv.toSort);
 
     });
   }
   showSearchProducts(config, page, countPage, sort, toSort) {
-    this.prodSrv.searchData(arguments)
+    this.prodSrv.getProductsByFilter(arguments).subscribe(data => {
+      console.log(data);
+    });
+
+    // .pipe(takeUntil(this._unsubscribe)).subscribe((data) => {
+    //   console.log(data);
+    // }, error => {
+    //   console.log(error);
+    // });
   }
 
   appSort() {
