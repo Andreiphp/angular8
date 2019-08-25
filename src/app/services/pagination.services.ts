@@ -7,19 +7,19 @@ export class PaginationServices {
   totalRecords: number;
   visibleCountItems: number;
   totalPages: number;
-  category: string;
+  category: number;
   productsLength: number;
   public subscribePagination = new Subject<any>();
   constructor() {
-    this.visibleCountItems = localStorage.getItem('visibleCount') ? +localStorage.getItem('visibleCount') : 6;
+    this.visibleCountItems = localStorage.getItem('visibleCount') ? +localStorage.getItem('visibleCount') : 3;
     this.productsLength  = this.productsLength ? this.productsLength : 0;
   }
 
-  setConfig(curent, totalR, category, productsLength?) {
+  setConfig(curent, totalR, productsLength = 0, category = 1) {
     this.curentPage = curent,
     this.totalRecords = totalR;
+    this.productsLength = productsLength;
     this.category = category;
-  //  this.productsLength = productsLength;
     this.setTotalPages();
   }
 

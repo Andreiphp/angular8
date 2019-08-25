@@ -49,13 +49,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
       this.route.navigate(['/catalog/search/1']);
     }
   }
-
-  appSort($event) {
-    console.log($event);
-    this.sort = $event.sort;
-    this.toSort = $event.tosort;
-   // this.showProducts(this.category, this.page, this._PAGSRV.visibleCountItems, this.sort, this.toSort);
-  }
   ngOnDestroy() {
     this._unsebsscribe.next();
     this._unsebsscribe.complete();

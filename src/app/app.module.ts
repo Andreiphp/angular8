@@ -34,6 +34,7 @@ import { SortComponent } from './components/catalog/sort/sort.component';
 import { FilterComponent } from './components/catalog/filter/filter.component';
 import { SearchComponent } from './components/catalog/search/search.component';
 import { CatalogViewComponent } from './components/catalog/catalog-view/catalog-view.component';
+import { AppPreviewListComponent } from './components/preview-list/app-preview-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +58,8 @@ import { CatalogViewComponent } from './components/catalog/catalog-view/catalog-
     SortComponent,
     FilterComponent,
     SearchComponent,
-    CatalogViewComponent
+    CatalogViewComponent,
+    AppPreviewListComponent
   ],
   imports: [
     BrowserModule,

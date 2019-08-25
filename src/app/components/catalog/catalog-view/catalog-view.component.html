@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="catal-tool-select">
-        <app-sort (appSort)="appSort($event)"></app-sort>
+        <app-sort (appSort)="appSort()"></app-sort>
       </div>
     </div>
   </div>
@@ -28,6 +28,6 @@
     <p>Товаров не найденно</p>
   </div>
   <div class="catal-pagination" *ngIf="products.length">
-    <app-pagination></app-pagination>
+    <app-pagination [flagVisible]="true"></app-pagination>
   </div>
 </main>

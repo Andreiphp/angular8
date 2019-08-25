@@ -6,35 +6,36 @@ import { Observable, Subject } from 'rxjs';
 })
 export class ProductsService {
   public searchData;
+  public stateView: string;
   public emitSearch = new Subject<any>();
   constructor(private http: HttpClient) {
-
-   }
+    this.stateView = 'block';
+  }
 
   getAllProducts(category, offset, count, sort, toSort): Observable<any> {
     const params = new HttpParams().set('offset', offset).set('count', count).set('category', category)
-    .set('sort', sort).set('toSort', toSort);
-    return this.http.get('http://localhost:8080/router/getAllProducts', {params});
+      .set('sort', sort).set('toSort', toSort);
+    return this.http.get('http://localhost:8080/router/getAllProducts', { params });
   }
   getAllBrandsByFilter() {
     return this.http.get('http://localhost:8080/router/getBrands');
   }
   getProductsByFilter(config: IArguments): Observable<any> {
     const params = new HttpParams()
-    .set('brands', this.getParamsBrand(config[0].brand))
-    .set('priceTo', config[0].priseto)
-    .set('priceFrom', config[0].priceFrom)
-    .set('offset', config[1])
-    .set('count', config[2])
-    .set('sort', config[3])
-    .set('toSort', config[4]);
-    return this.http.get('http://localhost:8080/router/getProductsByFilter', {params});
+      .set('brands', this.getParamsBrand(config[0].brand))
+      .set('priceTo', config[0].priseto)
+      .set('priceFrom', config[0].priceFrom)
+      .set('offset', config[1])
+      .set('count', config[2])
+      .set('sort', config[3])
+      .set('toSort', config[4]);
+    return this.http.get('http://localhost:8080/router/getProductsByFilter', { params });
   }
   getParamsBrand(brand: Set<string>) {
     if (brand) {
       return Array.from(brand).join(',');
     } else {
-      return '';
+      return null;
     }
   }
 

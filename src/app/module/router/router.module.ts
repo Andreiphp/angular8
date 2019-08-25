@@ -16,8 +16,8 @@ const childrenRouter: Routes = [
     { path: 'redactproduct', component: AdminRedactProdComponent }
 ];
 const catalogChildren: Routes = [
-    { path: 'search/:page', component: SearchComponent, data: { animation: 'catalogAnimate' } },
-    { path: 'view/:category/:page', component: CatalogViewComponent, data: { animation: 'catalogAnimate' } },
+    { path: 'search/:page', component: SearchComponent, data: { animation: 'catalogAnimate', data: 'search' } },
+    { path: 'view/:category/:page', component: CatalogViewComponent, data: { animation: 'catalogAnimate', data: 'catalog' } },
 ];
 
 const routes: Routes = [

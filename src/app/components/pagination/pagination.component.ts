@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { PaginationServices } from '../../services/pagination.services';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import {Router} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pagination',
@@ -12,13 +12,18 @@ import {Router} from '@angular/router';
 export class PaginationComponent implements OnInit, OnDestroy {
   public pages = [];
   public curentPage: number;
-  public category: string;
+  public category: number;
+  public statePage: string;
   private unsubscribe = new Subject<any>();
   @Input() flagVisible;
   constructor(
     public pagSrv: PaginationServices,
-    private router: Router
+    private router: Router,
+    private snapshot: ActivatedRoute
   ) {
+    this.snapshot.data.pipe(takeUntil(this.unsubscribe)).subscribe(data => {
+      this.statePage = data.data;
+    });
     this.pagSrv.subscribePagination.pipe(takeUntil(this.unsubscribe)).subscribe(() => {
       this.setPages();
     });
@@ -50,7 +55,11 @@ export class PaginationComponent implements OnInit, OnDestroy {
     } else {
       page = this.curentPage;
     }
-    this.router.navigate([`/view/catalog/${this.category}/${page}`]);
+    if (this.statePage === 'catalog') {
+      this.router.navigate([`/view/catalog/${this.category}/${page}`]);
+    } else {
+      this.router.navigate([`/search/${page}`]);
+    }
   }
   goNext() {
     let page;
@@ -59,7 +68,11 @@ export class PaginationComponent implements OnInit, OnDestroy {
     } else {
       page = this.curentPage;
     }
-    this.router.navigate([`/catalog/view/${this.category}/${page}`]);
+    if (this.statePage === 'catalog') {
+      this.router.navigate([`/view/catalog/${this.category}/${page}`]);
+    } else {
+      this.router.navigate([`/search/${page}`]);
+    }
   }
 
   setPages() {
@@ -104,8 +117,4 @@ export class PaginationComponent implements OnInit, OnDestroy {
     this.unsubscribe.next();
     this.unsubscribe.complete();
   }
-
-
-
-
 }

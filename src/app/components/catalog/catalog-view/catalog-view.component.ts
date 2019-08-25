@@ -6,6 +6,7 @@ import { takeUntil, switchMap } from 'rxjs/operators';
 import { ProductsService } from 'src/app/services/products.service';
 import { Product } from '../../../interfaces/product.interfaces';
 import { PaginationServices } from 'src/app/services/pagination.services';
+import { SortService } from 'src/app/services/sort.service';
 
 @Component({
   selector: 'app-catalog-view',
@@ -25,6 +26,7 @@ export class CatalogViewComponent implements OnInit {
     private _ROUTER: ActivatedRoute,
     private _PRODSRV: ProductsService,
     private _PAGSRV: PaginationServices,
+    private sortSrv: SortService,
     private route: Router) { }
 
   ngOnInit() {
@@ -55,7 +57,7 @@ export class CatalogViewComponent implements OnInit {
   fillProducts({ count: c, res: data }) {
     this.products = [];
     if (data && data.length) {
-      this._PAGSRV.setConfig(this.page, c.count, this.category);
+      this._PAGSRV.setConfig(this.page, c.count, data.length, this.category);
       data.forEach((product: Product) => {
         this.products.push({
           id: product.id,
@@ -68,4 +70,7 @@ export class CatalogViewComponent implements OnInit {
     }
   }
 
+  appSort() {
+    this.showProducts(this.category, this.page, this._PAGSRV.visibleCountItems, this.sortSrv.sort, this.sortSrv.toSort);
+   }
 }

@@ -1,34 +1,38 @@
 <main>
-    <div class="catal-nav-top">
-      <div class="catal-tool-bar">
-        <div class="catal-tool-inner">
-          <div class="catal-view-mode">
-            <ul>
-              <li><i class="fa fa-table"></i></li>
-              <li><i class="fa fa-bars"></i></li>
-            </ul>
-          </div>
-          <div class="catal-tool-count">
-            <!-- <span>
-              Showing 10 to 18 of 27
-            </span> -->
-          </div>
+  <div class="catal-nav-top">
+    <div class="catal-tool-bar">
+      <div class="catal-tool-inner">
+        <div class="catal-view-mode">
+          <ul>
+            <li><i class="fa fa-table" (click)="chengeProductsState('block')"></i></li>
+            <li><i class="fa fa-bars" (click)="chengeProductsState('list')"></i></li>
+          </ul>
         </div>
-        <div class="catal-tool-select">
-          <app-sort (appSort)="appSort($event)"></app-sort>
+        <div class="catal-tool-count">
+          <!-- <app-pagination [flagVisible]="false"></app-pagination> -->
         </div>
       </div>
+      <div class="catal-tool-select">
+        <app-sort (appSort)="appSort($event)"></app-sort>
+      </div>
     </div>
-    <div class="catal-product-list" *ngIf="products.length">
+  </div>
+  <div *ngIf="products.length">
+    <section class="catal-product-list" *ngIf="prodSrv.stateView === 'block'">
       <div class="catal-product-item" *ngFor="let product of products">
-        <app-pre-view-product [product]="product "></app-pre-view-product>
+        <app-pre-view-product [product]="product"></app-pre-view-product>
       </div>
-    </div>
-    <div class="catal-product-list" *ngIf="!products.length">
-      <p>Товаров не найденно</p>
-    </div>
-    <div class="catal-pagination" *ngIf="products.length">
-      <app-pagination></app-pagination>
-    </div>
-  </main>
-  
+    </section>
+    <section  class="catal-product-list" *ngIf="prodSrv.stateView === 'list'">
+        <div class="">
+            <app-preview-list [product]="product" *ngFor="let product of products"></app-preview-list>
+          </div>
+    </section>
+  </div>
+  <div class="catal-product-list" *ngIf="!products.length">
+    <p>Товаров не найденно</p>
+  </div>
+  <div class="catal-pagination" *ngIf="products.length">
+    <app-pagination [flagVisible]="true"></app-pagination>
+  </div>
+</main>

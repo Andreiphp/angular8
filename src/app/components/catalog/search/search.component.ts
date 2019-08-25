@@ -17,6 +17,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   private page: number;
   private sort: string;
   private toSort: boolean;
+  private confiSearch;
   private _unsubscribe: Subject<any> = new Subject();
   constructor(
     private prodSrv: ProductsService,
@@ -25,7 +26,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     private _sortSrv: SortService,
   ) {
     this.prodSrv.emitSearch.pipe(takeUntil(this._unsubscribe)).subscribe(data => {
-      console.log(data);
       const confSearch = this.prodSrv.searchData;
       this.showSearchProducts(confSearch, this.page, this._pagSrv.visibleCountItems,
         this._sortSrv.sort,
@@ -36,27 +36,52 @@ export class SearchComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.router.params.subscribe(params => {
       this.page = params.page;
-      const confSearch = this.prodSrv.searchData;
-      this.showSearchProducts(confSearch, this.page, this._pagSrv.visibleCountItems,
+      if (this.prodSrv.searchData) {
+        this.confiSearch = this.prodSrv.searchData;
+      } else {
+        this.confiSearch = this.defoltSearch();
+      }
+      this.showSearchProducts(this.confiSearch, this.page, this._pagSrv.visibleCountItems,
         this._sortSrv.sort,
         this._sortSrv.toSort);
 
     });
   }
   showSearchProducts(config, page, countPage, sort, toSort) {
-    this.prodSrv.getProductsByFilter(arguments).subscribe(data => {
-      console.log(data);
+    this.prodSrv.getProductsByFilter(arguments).pipe(takeUntil(this._unsubscribe)).subscribe(products => {
+      this.fillProducts(products);
+      this._pagSrv.subscribePagination.next();
     });
-
-    // .pipe(takeUntil(this._unsubscribe)).subscribe((data) => {
-    //   console.log(data);
-    // }, error => {
-    //   console.log(error);
-    // });
   }
 
+  defoltSearch() {
+    return {
+      priseto: 200,
+      priceFrom: 0,
+      brand: new Set(),
+    };
+  }
   appSort() {
+    this.showSearchProducts(this.confiSearch, this.page, this._pagSrv.visibleCountItems, this._sortSrv.sort, this._sortSrv.toSort);
+  }
+  chengeProductsState(state: string) {
+    this.prodSrv.stateView = state;
+  }
 
+  fillProducts({ count: c, res: data }) {
+    this.products = [];
+    if (data && data.length) {
+      this._pagSrv.setConfig(this.page, c[0].count, data.length);
+      data.forEach((product: Product) => {
+        this.products.push({
+          id: product.id,
+          title: product.title,
+          price: product.price,
+          state: 'all',
+          img: product.img
+        });
+      });
+    }
   }
 
   ngOnDestroy() {

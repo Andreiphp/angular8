@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { SortService } from 'src/app/services/sort.service';
 
 @Component({
   selector: 'app-sort',
@@ -9,7 +10,7 @@ export class SortComponent implements OnInit {
   @Output() appSort: EventEmitter<any> = new EventEmitter();
   public sort;
   public ascDesc: boolean;
-  constructor() { }
+  constructor(private sortSrv: SortService) { }
 
   ngOnInit() {
     this.ascDesc = true;
@@ -17,10 +18,13 @@ export class SortComponent implements OnInit {
   }
   setTosort() {
     this.ascDesc = !this.ascDesc;
-    this.appSort.emit({sort: this.sort, tosort: this.ascDesc});
+    this.sortSrv.sort = this.sort;
+    this.sortSrv.toSort = this.ascDesc ? 'asc' : 'desc';
+    this.appSort.emit();
   }
   setSort() {
-    this.appSort.emit({sort: this.sort, tosort: this.ascDesc});
+    this.sortSrv.sort = this.sort;
+    this.appSort.emit();
   }
 
 
