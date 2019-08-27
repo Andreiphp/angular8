@@ -78,7 +78,8 @@ export class SearchComponent implements OnInit, OnDestroy {
           title: product.title,
           price: product.price,
           state: 'all',
-          img: product.img
+          img: product.img,
+          minidescription: product.minidescription
         });
       });
     }

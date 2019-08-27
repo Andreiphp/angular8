@@ -1,38 +1,40 @@
 <div class="catal-block">
-    <h2 class="catalog-title catal-title">
-        Бренды
-    </h2>
-    <div class="catal-list">
-        <ul *ngIf="brands">
-            <li *ngFor="let brand of brands">
-                <label>
-                    <input (change)="filterSet($event, brand)" type="checkbox">
-                    {{brand.title}} ({{brand.count}})
-                </label>
-            </li>
-        </ul>
-    </div>
+  <h2 class="catalog-title catal-title">
+    Бренды
+  </h2>
+  <div class="catal-list">
+    <ul *ngIf="brands">
+      <li *ngFor="let brand of brands">
+        <label class="checkbox">
+          <input (change)="filterSet($event, brand)" type="checkbox">
+          <span class="fon-checkbox"></span>
+          <div class="checkbox__text"> {{brand.title}} ({{brand.count}})</div>
+        </label>
+      </li>
+    </ul>
+  </div>
 </div>
 <div class="catal-block">
-    <h2 class="catalog-title catal-title">
-        Фильтр по цене
-    </h2>
-    <div class="filter-range" (mousemove)="mooveMoovLeft($event)" (mousedown)="mooveLeftEnter($event)"
-        (mouseup)="moovleftUp($event)" (mouseleave)="mouseoutLeft()">
-        <div #rangeS class="price-slider">
-            <div class="price-slider-range" [ngStyle]="{'left.%': positionRangeLeft, 'width.%': positionRangeWidth}">
-            </div>
-            <span id="rLeft" [ngStyle]="{'left.%': leftStep}" class="prise-sl-handle left"></span>
-            <span id="rRight" [ngStyle]="{'left.%': rigthStep}" class="prise-sl-handle right"></span>
-        </div>
-        <div class="price-box">
-            <span class="tab">Цена:</span>
-            <span class="from"><span class="f-prise">{{priceFrom}}</span></span>
-            <span>&nbsp;</span>
-            <span class="to"><span class="f-prise">{{priceTo}}</span></span>
-        </div>
+  <h2 class="catalog-title catal-title">
+    Фильтр по цене
+  </h2>
+  <div class="filter-range" (mousemove)="mooveMoovLeft($event)" (mousedown)="mooveLeftEnter($event)"
+    (mouseup)="moovleftUp($event)" (mouseleave)="mouseoutLeft()">
+    <div #rangeS class="price-slider">
+      <div class="price-slider-range" [ngStyle]="{'left.%': positionRangeLeft, 'width.%': positionRangeWidth}">
+      </div>
+      <span id="rLeft" [ngStyle]="{'left.%': leftStep}" class="prise-sl-handle left"></span>
+      <span id="rRight" [ngStyle]="{'left.%': rigthStep}" class="prise-sl-handle right"></span>
     </div>
+    <div class="price-box">
+      <span class="tab">Цена:</span>
+      <span class="from"><span class="f-prise">{{priceFrom}}</span></span>
+      <span>&nbsp;</span>
+      <span class="to"><span class="f-prise">{{priceTo}}</span></span>
+    </div>
+  </div>
 </div>
 <div class="filter-show">
-    <button [ngClass]="{'disableFilter': disableFilter}" [disabled]="disableFilter" (click)="startFilter()">показать</button>
+  <button [ngClass]="{'disableFilter': disableFilter}" [disabled]="disableFilter"
+    (click)="startFilter()">показать</button>
 </div>
