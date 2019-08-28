@@ -3,7 +3,8 @@
     Бренды
   </h2>
   <div class="catal-list">
-    <ul *ngIf="brands">
+    <form name="brandsForm" #form>
+        <ul *ngIf="brands">
       <li *ngFor="let brand of brands">
         <label class="checkbox">
           <input (change)="filterSet($event, brand)" type="checkbox">
@@ -12,6 +13,8 @@
         </label>
       </li>
     </ul>
+    </form>
+  
   </div>
 </div>
 <div class="catal-block">

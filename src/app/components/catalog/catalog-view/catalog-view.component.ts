@@ -21,10 +21,10 @@ export class CatalogViewComponent implements OnInit {
   private page: number;
   private sort: string;
   private toSort: boolean;
-  private _UNSEBSCRIBE: Subject<any> = new Subject();
+  private _unsubscribe: Subject<any> = new Subject();
   constructor(
     private _ROUTER: ActivatedRoute,
-    private _PRODSRV: ProductsService,
+    private prodSrv: ProductsService,
     private _PAGSRV: PaginationServices,
     private sortSrv: SortService,
     private route: Router) { }
@@ -35,6 +35,7 @@ export class CatalogViewComponent implements OnInit {
       this.category = params.category;
       this.page = params.page;
       this.initSort();
+      this.clearSearch();
       this.showProducts(this.category, this.page, this._PAGSRV.visibleCountItems, this.sort, this.toSort);
     });
   }
@@ -45,8 +46,8 @@ export class CatalogViewComponent implements OnInit {
     }
   }
   showProducts(category, page, visibleCountItems, sort, toSort) {
-    this._PRODSRV.getAllProducts(category, page, visibleCountItems, sort, toSort)
-      .pipe(takeUntil(this._UNSEBSCRIBE)).toPromise()
+    this.prodSrv.getAllProducts(category, page, visibleCountItems, sort, toSort)
+      .pipe(takeUntil(this._unsubscribe)).toPromise()
       .then(products => {
         this.fillProducts(products);
         this._PAGSRV.subscribePagination.next();
@@ -64,7 +65,8 @@ export class CatalogViewComponent implements OnInit {
           title: product.title,
           price: product.price,
           state: 'all',
-          img: product.img
+          img: product.img,
+          minidescription: product.minidescription
         });
       });
     }
@@ -72,5 +74,18 @@ export class CatalogViewComponent implements OnInit {
 
   appSort() {
     this.showProducts(this.category, this.page, this._PAGSRV.visibleCountItems, this.sortSrv.sort, this.sortSrv.toSort);
-   }
+  }
+  chengeProductsState(state: string) {
+    if (state === 'list') {
+      this.prodSrv.stateView = false;
+      this.prodSrv.stateList = true;
+    } else {
+      this.prodSrv.stateView = true;
+      this.prodSrv.stateList = false;
+    }
+  }
+
+  clearSearch() {
+    this.prodSrv.clearSearch.next();
+  }
 }

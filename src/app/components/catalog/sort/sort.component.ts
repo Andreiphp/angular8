@@ -19,7 +19,7 @@ export class SortComponent implements OnInit {
   setTosort() {
     this.ascDesc = !this.ascDesc;
     this.sortSrv.sort = this.sort;
-    this.sortSrv.toSort = this.ascDesc ? 'asc' : 'desc';
+    this.sortSrv.toSort = this.ascDesc;
     this.appSort.emit();
   }
   setSort() {

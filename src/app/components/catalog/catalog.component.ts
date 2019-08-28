@@ -22,7 +22,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
   private page: number;
   private sort: string;
   private toSort: boolean;
-  private _unsebsscribe: Subject<any> = new Subject();
+  private _unsabsscribe: Subject<any> = new Subject();
   constructor(
     private route: Router,
     private prodSrv: ProductsService
@@ -50,8 +50,8 @@ export class CatalogComponent implements OnInit, OnDestroy {
     }
   }
   ngOnDestroy() {
-    this._unsebsscribe.next();
-    this._unsebsscribe.complete();
+    this._unsabsscribe.next();
+    this._unsabsscribe.complete();
   }
 
 }

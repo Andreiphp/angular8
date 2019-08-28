@@ -1,12 +1,14 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.sass']
 })
-export class FilterComponent implements OnInit {
+export class FilterComponent implements OnInit, OnDestroy {
   public priceFrom = 0;
   public priceTo = 200;
   public brands;
@@ -23,6 +25,7 @@ export class FilterComponent implements OnInit {
   private fixPosition = 0;
   private differenceL = 0;
   private differenceR = 0;
+  private _unsubscribe = new Subject();
   @Output() emitfilter: EventEmitter<any> = new EventEmitter<any>();
   get infoCoordinate() {
     return this.rangeS.nativeElement.getBoundingClientRect();
@@ -34,13 +37,17 @@ export class FilterComponent implements OnInit {
       return true;
     }
   }
-  constructor(private proSrv: ProductsService) { }
+  constructor(private prodSrv: ProductsService) { }
   @ViewChild('rangeS', { static: false }) rangeS;
+  @ViewChild('form', { static: false }) form;
   ngOnInit() {
-    this.proSrv.getAllBrandsByFilter().subscribe((data) => {
+    this.prodSrv.getAllBrandsByFilter().pipe(takeUntil(this._unsubscribe)).subscribe((data) => {
       this.brands = data;
     }, (error) => {
       console.log(error);
+    });
+    this.prodSrv.clearSearch.pipe(takeUntil(this._unsubscribe)).subscribe(() => {
+      this.clear();
     });
     setTimeout(() => {
       this.setSteps();
@@ -48,7 +55,7 @@ export class FilterComponent implements OnInit {
   }
   filterSet($event, brand): void {
     if (this.filterstate.has(brand.title)) {
-     this.filterstate.delete(brand.title);
+      this.filterstate.delete(brand.title);
     } else {
       this.filterstate.add(brand.title);
     }
@@ -187,6 +194,18 @@ export class FilterComponent implements OnInit {
         priceFrom: this.priceFrom
       });
     }
+  }
+  clear() {
+    if (this.form) {
+      this.form.nativeElement.reset();
+    }
+    this.filterstate.clear();
+    this.priceFrom = 0;
+    this.priceTo = 200;
+  }
+  ngOnDestroy() {
+    this._unsubscribe.next();
+    this._unsubscribe.complete();
   }
 
 }

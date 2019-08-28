@@ -65,7 +65,13 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.showSearchProducts(this.confiSearch, this.page, this._pagSrv.visibleCountItems, this._sortSrv.sort, this._sortSrv.toSort);
   }
   chengeProductsState(state: string) {
-    this.prodSrv.stateView = state;
+    if (state === 'list') {
+      this.prodSrv.stateView = false;
+      this.prodSrv.stateList = true;
+    } else {
+      this.prodSrv.stateView = true;
+      this.prodSrv.stateList = false;
+    }
   }
 
   fillProducts({ count: c, res: data }) {

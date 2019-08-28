@@ -6,10 +6,13 @@ import { Observable, Subject } from 'rxjs';
 })
 export class ProductsService {
   public searchData;
-  public stateView: string;
+  public stateView: boolean;
+  public stateList: boolean;
   public emitSearch = new Subject<any>();
+  public clearSearch = new Subject<any>();
   constructor(private http: HttpClient) {
-    this.stateView = 'block';
+    this.stateView = true;
+    this.stateList = false;
   }
 
   getAllProducts(category, offset, count, sort, toSort): Observable<any> {

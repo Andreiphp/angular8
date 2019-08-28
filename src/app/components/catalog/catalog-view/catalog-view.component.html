@@ -4,8 +4,8 @@
       <div class="catal-tool-inner">
         <div class="catal-view-mode">
           <ul>
-            <li><i class="fa fa-table"></i></li>
-            <li><i class="fa fa-bars"></i></li>
+              <li [ngClass]="{'curent-view': prodSrv.stateView}"><i class="fa fa-table" (click)="chengeProductsState('block')"></i></li>
+              <li [ngClass]="{'curent-view': prodSrv.stateList}"><i class="fa fa-bars" (click)="chengeProductsState('list')"></i></li>
           </ul>
         </div>
         <div class="catal-tool-count">
@@ -19,10 +19,17 @@
       </div>
     </div>
   </div>
-  <div class="catal-product-list" *ngIf="products.length">
-    <div class="catal-product-item" *ngFor="let product of products">
-      <app-pre-view-product [product]="product "></app-pre-view-product>
-    </div>
+  <div *ngIf="products.length">
+    <section class="catal-product-list" *ngIf="prodSrv.stateView">
+      <div class="catal-product-item" *ngFor="let product of products">
+        <app-pre-view-product [product]="product"></app-pre-view-product>
+      </div>
+    </section>
+    <section  class="catal-product-list list" *ngIf="prodSrv.stateList">
+        <div class="catal-product-list-item">
+            <app-preview-list [product]="product" *ngFor="let product of products"></app-preview-list>
+          </div>
+    </section>
   </div>
   <div class="catal-product-list" *ngIf="!products.length">
     <p>Товаров не найденно</p>
