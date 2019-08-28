@@ -23,8 +23,8 @@
         <app-pre-view-product [product]="product"></app-pre-view-product>
       </div>
     </section>
-    <section  class="catal-product-list" *ngIf="prodSrv.stateView === 'list'">
-        <div class="">
+    <section  class="catal-product-list list" *ngIf="prodSrv.stateView === 'list'">
+        <div class="catal-product-list-item">
             <app-preview-list [product]="product" *ngFor="let product of products"></app-preview-list>
           </div>
     </section>

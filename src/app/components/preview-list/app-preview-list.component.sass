@@ -16,10 +16,10 @@
       box-shadow: 0 0 20px 0 rgba(41, 44, 58, 0.15)
     .product-inner
       display: flex
-      flex-direction: column
       height: auto
       width: 100%
       .product-image
+        width: 30%
         position: relative
         overflow: hidden
         text-align: center
@@ -81,11 +81,13 @@
           width: auto
           max-height: 210px
       .product-caption
+        width: 70%
         display: inline-flex
         flex-direction: column
         justify-content: space-between
         flex-grow: 1
         padding-top: 15px
+        margin-left: 50px
         .product-name
           position: relative
           display: -webkit-box
@@ -102,7 +104,8 @@
             display: block
             width: 100%
             font-size: 14px
-            
+            -webkit-text-stroke-width: thin
+
             &:after
               content: ""
               bottom: -2px
@@ -116,6 +119,7 @@
             &:hover:after
               width: 100%
       .product-price
+        order: 0
         .old-price
           display: inline-block
           font-size: 14px
@@ -123,9 +127,21 @@
           padding-right: 8px
           text-decoration: line-through
         .new-price
-          font-size: 18px
+          font-size: 22px
           font-weight: 500
           color: #cc2121
+      .product-minidescription
+        max-height: 130px
+        order: 1
+        margin-top: 20px
+        margin-bottom: 20px
+        padding-top: 20px
+        border-top: 1px solid #ebebeb
+        p
+          max-height: 130px
+          font-size: 13px
+          overflow: hidden
+          -webkit-text-stroke-width: thin
 .product-layout:hover
   .product-inner
     .product-image
