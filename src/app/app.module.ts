@@ -35,6 +35,7 @@ import { FilterComponent } from './components/catalog/filter/filter.component';
 import { SearchComponent } from './components/catalog/search/search.component';
 import { CatalogViewComponent } from './components/catalog/catalog-view/catalog-view.component';
 import { AppPreviewListComponent } from './components/preview-list/app-preview-list.component';
+import { PreviewProdBlockComponent } from './components/preview-prod-block/preview-prod-block.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +60,8 @@ import { AppPreviewListComponent } from './components/preview-list/app-preview-l
     FilterComponent,
     SearchComponent,
     CatalogViewComponent,
-    AppPreviewListComponent
+    AppPreviewListComponent,
+    PreviewProdBlockComponent
   ],
   imports: [
     BrowserModule,
@@ -69,6 +71,9 @@ import { AppPreviewListComponent } from './components/preview-list/app-preview-l
     HttpClientModule,
     AppRouterModule,
     AngularFontAwesomeModule,
+  ],
+  entryComponents: [
+    PreviewProdBlockComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

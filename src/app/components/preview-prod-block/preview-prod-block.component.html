@@ -1,0 +1,38 @@
+<div class="preview-overlay" [@animOverlay]="state" *ngIf="state !== 'void'"></div>
+<div class="preview-main" [@animPreview]="state" *ngIf="state !== 'void'">
+    <div class="preview-close">
+        <button type="button" class="close" (click)="deleteComponent()">×</button>
+    </div>
+    <div class="preview-details">
+        <div class="preview-image">
+            <img src="../../../assets/image/products/{{product.img}}" alt="фото продукта">
+        </div>
+        <div class="preview-info">
+            <div class="preview-name">
+                {{product.title}}
+            </div>
+            <div class="preview-price">
+                <span class="old preview-mr">{{product.price}}BYN</span>
+                <span class="curent preview-mr">{{newPrice}}BYN</span>
+                <span class="sale preview-mr">{{product.sale}}%</span>
+            </div>
+            <div class="preview-description" *ngIf="product.minidescription">
+                {{product.minidescription}}
+            </div>
+            <div class="preview-stock">
+                <span>Количество</span>
+                <div class="preview-inc">
+                    <div class="preview-cart-input">
+                        <input class="preview-input-box" type="text" [value]="0" [ngModel]="count">
+                        <div (click)="dec()" class="dec countbutton"><i class="fa fa-angle-down"></i></div>
+                        <div (click)="inc()" class="inc countbutton"><i class="fa fa-angle-up"></i></div>
+                    </div>
+                    <div class="preview-btn-add">
+                        <button type="button" (click)="addToCart(product)" [disabled]="count === 0"
+                            class="default-btn">Добавить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Product } from 'src/app/interfaces/product.interfaces';
+import { ProductsService } from 'src/app/services/products.service';
+
 
 @Component({
   selector: 'app-pre-view-product',
@@ -8,9 +11,13 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PreViewProductComponent implements OnInit {
   @Input() product;
 
-  constructor() { }
+  constructor(private prodSrv: ProductsService) { }
 
   ngOnInit() {
+  }
+
+  openViewProduct(product: Product): void {
+    this.prodSrv.emitPreviewProductBlock.next(product);
   }
 
 }

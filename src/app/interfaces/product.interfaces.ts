@@ -4,5 +4,6 @@ export interface Product {
     price: string;
     img: string;
     state: string;
+    sale: string;
     minidescription?: string;
 }

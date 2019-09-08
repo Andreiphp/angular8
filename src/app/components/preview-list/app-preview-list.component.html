@@ -1,32 +1,32 @@
 <article class="product-layout">
-        <div class="product-inner">
-            <div class="product-image">
-                <div class="product-label label-new">new</div>
-                <div class="product-label label-sale">7%</div>
-                <a>
-                    <img alt="" src="../../../assets/image/products/{{product.img}}">
-                </a>
-                <div class="action-links">
-                    <a class="action-btn btn-cart"><i class="fa fa-cart-arrow-down"></i></a>
-                    <a class="action-btn btn-wishlist"><i class="fa fa-heart-o"></i></a>
-                    <a class="action-btn btn-compare"><i class="fa fa-refresh"></i></a>
-                    <a class="action-btn btn-quickview"><i class="fa fa-search" aria-hidden="true"></i></a>
-                    <!-- сделать отдельным компонентом -->
-                </div>
-            </div>
-            <div class="product-caption">
-                <h4 class="product-name">
-                    <a href="/">{{product.title}}</a>
-                </h4>
-                <div class="product-minidescription">
-                  <p>
-                    {{product.minidescription}}
-                  </p>
-                </div>
-                <div class="product-price">
-                    <span class="old-price">42(руб)</span>
-                    <span class="new-price">222(руб)</span>
-                </div>
+    <div class="product-inner">
+        <div class="product-image">
+            <div class="product-label label-new">new</div>
+            <div class="product-label label-sale">7%</div>
+            <a>
+                <img alt="" src="../../../assets/image/products/{{product.img}}">
+            </a>
+            <div class="action-links">
+                <a class="action-btn btn-cart"><i class="fa fa-cart-arrow-down"></i></a>
+                <a class="action-btn btn-wishlist"><i class="fa fa-heart-o"></i></a>
+                <a class="action-btn btn-compare"><i class="fa fa-refresh"></i></a>
+                <a class="action-btn btn-quickview"><i class="fa fa-search" aria-hidden="true"></i></a>
+                <!-- сделать отдельным компонентом -->
             </div>
         </div>
-    </article>
+        <div class="product-caption">
+            <h4 class="product-name">
+                <a href="/">{{product.title}}</a>
+            </h4>
+            <div class="product-minidescription">
+                <p>
+                    {{product.minidescription}}
+                </p>
+            </div>
+            <div class="product-price">
+                <span class="old-price">42(руб)</span>
+                <span class="new-price">222(руб)</span>
+            </div>
+        </div>
+    </div>
+</article>

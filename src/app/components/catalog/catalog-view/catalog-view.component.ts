@@ -66,6 +66,7 @@ export class CatalogViewComponent implements OnInit {
           price: product.price,
           state: 'all',
           img: product.img,
+          sale: product.sale,
           minidescription: product.minidescription
         });
       });

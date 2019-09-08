@@ -10,6 +10,8 @@ export class ProductsService {
   public stateList: boolean;
   public emitSearch = new Subject<any>();
   public clearSearch = new Subject<any>();
+  public emitPreviewProductBlock = new Subject<any>();
+  public emitclearPreview = new Subject<any>();
   constructor(private http: HttpClient) {
     this.stateView = true;
     this.stateList = false;
