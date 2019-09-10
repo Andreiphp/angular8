@@ -1,4 +1,4 @@
-<div class="preview-overlay" [@animOverlay]="state" *ngIf="state !== 'void'"></div>
+<div class="preview-overlay" [@animOverlay]="state" *ngIf="state !== 'void'" (click)="deleteComponent()"></div>
 <div class="preview-main" [@animPreview]="state" *ngIf="state !== 'void'">
     <div class="preview-close">
         <button type="button" class="close" (click)="deleteComponent()">×</button>

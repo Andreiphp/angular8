@@ -7,6 +7,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Product } from 'src/app/interfaces/product.interfaces';
 import { PreviewProdBlockComponent } from '../preview-prod-block/preview-prod-block.component';
+import { CartServicesService } from 'src/app/services/cart-services.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -21,6 +22,7 @@ export class AppComponent implements OnDestroy {
     private _mainSrv: MainServices,
     private _prodSrv: ProductsService,
     private componentFactoryResolver: ComponentFactoryResolver,
+    private cartSrt: CartServicesService
   ) {
     window.onresize = () => {
       this._mainSrv.subOnResize.next();

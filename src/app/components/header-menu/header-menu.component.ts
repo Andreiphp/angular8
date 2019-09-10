@@ -3,6 +3,7 @@ import {openBascket} from './animate';
 import {MainServices} from '../../services/main.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { CartServicesService } from 'src/app/services/cart-services.service';
 
 @Component({
     selector: 'app-header-menu',
@@ -14,10 +15,16 @@ export class HeaderMenuComponent implements OnInit, OnDestroy {
     flagOpenSinCart: boolean;
     flegSubCat: boolean;
     flagMainMenu: boolean;
+    get cartProducts() {
+      const cartProd = Array.from(this.cartSrv.basket);
+      console.log(cartProd);
+      return cartProd;
+    }
     private unSubscribe: Subject<any> = new Subject();
 
     constructor(
-        private main_srv: MainServices,
+        private mainSrv: MainServices,
+        private cartSrv: CartServicesService,
     ) {
         this.flagOpenSinCart = false;
         this.flegSubCat = false;
@@ -27,7 +34,7 @@ export class HeaderMenuComponent implements OnInit, OnDestroy {
         }   else {
             this.flagMainMenu = true;
         }
-        this.main_srv.subOnResize.pipe(takeUntil(this.unSubscribe)).subscribe(() => {
+        this.mainSrv.subOnResize.pipe(takeUntil(this.unSubscribe)).subscribe(() => {
                 this.flegSubCat = false;
                 if (window.innerWidth < 990) {
                     this.flagMainMenu = true;
@@ -37,6 +44,9 @@ export class HeaderMenuComponent implements OnInit, OnDestroy {
     }
     openSinCart() {
         this.flagOpenSinCart = !this.flagOpenSinCart;
+    }
+    deleteProdFCart(product) {
+
     }
 
     openMobileMenu(event) {
