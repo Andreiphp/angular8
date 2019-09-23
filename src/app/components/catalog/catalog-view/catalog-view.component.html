@@ -4,8 +4,13 @@
       <div class="catal-tool-inner">
         <div class="catal-view-mode">
           <ul>
-              <li [ngClass]="{'curent-view': prodSrv.stateView}"><i class="fa fa-table" (click)="chengeProductsState('block')"></i></li>
-              <li [ngClass]="{'curent-view': prodSrv.stateList}"><i class="fa fa-bars" (click)="chengeProductsState('list')"></i></li>
+            <li [ngClass]="{'curent-view': prodSrv.stateView}"><i class="fa fa-table"
+                (click)="chengeProductsState('block')"></i></li>
+            <li [ngClass]="{'curent-view': prodSrv.stateList}"><i class="fa fa-bars"
+                (click)="chengeProductsState('list')"></i></li>
+            <li class="compare"><button><i class="fa fa-refresh" (click)="chengeProductsState('list')"></i>сравнение
+                <span class="compare-count">{{countCompare}}</span>
+              </button></li>
           </ul>
         </div>
         <div class="catal-tool-count">
@@ -25,10 +30,10 @@
         <app-pre-view-product [product]="product"></app-pre-view-product>
       </div>
     </section>
-    <section  class="catal-product-list list" *ngIf="prodSrv.stateList">
-        <div class="catal-product-list-item">
-            <app-preview-list [product]="product" *ngFor="let product of products"></app-preview-list>
-          </div>
+    <section class="catal-product-list list" *ngIf="prodSrv.stateList">
+      <div class="catal-product-list-item">
+        <app-preview-list [product]="product" *ngFor="let product of products"></app-preview-list>
+      </div>
     </section>
   </div>
   <div class="catal-product-list" *ngIf="!products.length">

@@ -17,7 +17,6 @@ main
         line-height: 28px
         .catal-view-mode
           margin-right: 20px
-          border-right: 1px solid #ebebeb
           ul
             display: flex
             flex-wrap: wrap
@@ -25,8 +24,12 @@ main
             margin-bottom: 0
             list-style: none
             li
+              line-height: 40px
               margin-right: 20px
               cursor: pointer
+              &:nth-child(even)
+                border-right: 1px solid #ebebeb
+                padding-right: 20px
               i
                 color: #000000
             .curent-view
@@ -68,3 +71,24 @@ main
     letter-spacing: -.05em
     text-transform: capitalize
     margin-bottom: 20px
+.compare
+  button
+    position: relative
+    width: 125px
+    height: 40px
+    line-height: 40px
+    border: none
+    border-radius: 5px
+    outline: none
+    background-color: #cc2121
+    color: #fff
+    cursor: pointer
+    transition: 0.3s
+    i
+      position: relative
+      left: -10px
+      color: #fff!important
+    &:hover
+      background-color: #000000
+    .compare-count
+      

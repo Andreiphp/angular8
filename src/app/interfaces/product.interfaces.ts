@@ -6,4 +6,6 @@ export interface Product {
     state: string;
     sale: string;
     minidescription?: string;
+    new: number;
+    hit: number;
 }

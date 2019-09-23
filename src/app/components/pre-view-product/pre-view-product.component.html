@@ -7,10 +7,15 @@
                 <img alt="" src="../../../assets/image/products/{{product.img}}">
             </a>
             <div class="action-links">
-                <a class="action-btn btn-cart"><i class="fa fa-cart-arrow-down"></i></a>
-                <a class="action-btn btn-wishlist"><i class="fa fa-heart-o"></i></a>
-                <a class="action-btn btn-compare"><i class="fa fa-refresh"></i></a>
-                <a class="action-btn btn-quickview"><i class="fa fa-search" aria-hidden="true" title="просмотреть"(click)="openViewProduct(product)"></i></a>
+                <button class="action-btn btn-cart" [disabled]="hasCart(product)" (click)="addToCart(product)"><i
+                        class="fa fa-cart-arrow-down"
+                        [title]="hasCart(product) ? 'Товар в корзине' : 'Добавить в корзину'"></i></button>
+                <button class="action-btn btn-wishlist"><i class="fa fa-heart-o"></i></button>
+                <button class="action-btn btn-compare" [disabled]="hasCompare(product)"><i class="fa fa-refresh"
+                        (click)="addToCompare(product)"
+                        [title]="hasCompare(product) ? 'Продукт добавлен в сравнение' : 'Добавить в сравнение'"></i></button>
+                <button class="action-btn btn-quickview"><i class="fa fa-search" aria-hidden="true" title="просмотреть"
+                        (click)="openViewProduct(product)"></i></button>
                 <!-- сделать отдельным компонентом -->
             </div>
         </div>
@@ -19,8 +24,8 @@
                 <a href="/">{{product.title}}</a>
             </h4>
             <div class="product-price">
-                <p class="old-price">42</p>
-                <p class="new-price">222</p>
+                <span class="old-price">{{newPrice}}(руб)</span>
+                <span class="new-price">{{product.price}}(руб)</span>
             </div>
         </div>
     </div>

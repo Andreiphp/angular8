@@ -7,6 +7,7 @@ import { ProductsService } from 'src/app/services/products.service';
 import { Product } from '../../../interfaces/product.interfaces';
 import { PaginationServices } from 'src/app/services/pagination.services';
 import { SortService } from 'src/app/services/sort.service';
+import { CompareService } from 'src/app/services/compare.service';
 
 @Component({
   selector: 'app-catalog-view',
@@ -21,12 +22,16 @@ export class CatalogViewComponent implements OnInit {
   private page: number;
   private sort: string;
   private toSort: boolean;
-  private _unsubscribe: Subject<any> = new Subject();
+  private unsubscribe: Subject<any> = new Subject();
+  get countCompare() {
+    return this.compareSrv.compareProducts.size;
+  }
   constructor(
     private _ROUTER: ActivatedRoute,
     private prodSrv: ProductsService,
     private _PAGSRV: PaginationServices,
     private sortSrv: SortService,
+    private compareSrv: CompareService,
     private route: Router) { }
 
   ngOnInit() {
@@ -47,7 +52,7 @@ export class CatalogViewComponent implements OnInit {
   }
   showProducts(category, page, visibleCountItems, sort, toSort) {
     this.prodSrv.getAllProducts(category, page, visibleCountItems, sort, toSort)
-      .pipe(takeUntil(this._unsubscribe)).toPromise()
+      .pipe(takeUntil(this.unsubscribe)).toPromise()
       .then(products => {
         this.fillProducts(products);
         this._PAGSRV.subscribePagination.next();
@@ -67,7 +72,9 @@ export class CatalogViewComponent implements OnInit {
           state: 'all',
           img: product.img,
           sale: product.sale,
-          minidescription: product.minidescription
+          minidescription: product.minidescription,
+          new: product.new,
+          hit: product.hit,
         });
       });
     }

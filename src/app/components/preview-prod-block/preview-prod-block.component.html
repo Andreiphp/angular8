@@ -1,4 +1,4 @@
-<div class="preview-overlay" [@animOverlay]="state" *ngIf="state !== 'void'"></div>
+<div class="preview-overlay" [@animOverlay]="state" *ngIf="state !== 'void'" (click)="deleteComponent()"></div>
 <div class="preview-main" [@animPreview]="state" *ngIf="state !== 'void'">
     <div class="preview-close">
         <button type="button" class="close" (click)="deleteComponent()">×</button>
@@ -28,7 +28,7 @@
                         <div (click)="inc()" class="inc countbutton"><i class="fa fa-angle-up"></i></div>
                     </div>
                     <div class="preview-btn-add">
-                        <button type="button" (click)="addToCart(product)" [disabled]="count === 0"
+                        <button type="button" (click)="addToCart(product, count)" [disabled]="count === 0"
                             class="default-btn">Добавить</button>
                     </div>
                 </div>

@@ -1,16 +1,20 @@
 <article class="product-layout">
     <div class="product-inner">
         <div class="product-image">
-            <div class="product-label label-new">new</div>
+            <div *ngIf="product.new" class="product-label label-new">new</div>
+            <div *ngIf="product.hit" class="product-label label-new">Хит</div>
             <div class="product-label label-sale">7%</div>
             <a>
                 <img alt="" src="../../../assets/image/products/{{product.img}}">
             </a>
             <div class="action-links">
-                <a class="action-btn btn-cart"><i class="fa fa-cart-arrow-down"></i></a>
-                <a class="action-btn btn-wishlist"><i class="fa fa-heart-o"></i></a>
-                <a class="action-btn btn-compare"><i class="fa fa-refresh"></i></a>
-                <a class="action-btn btn-quickview"><i class="fa fa-search" aria-hidden="true"></i></a>
+                <button class="action-btn btn-cart" [disabled]="hasCart(product)" (click)="addToCart(product)"><i
+                        class="fa fa-cart-arrow-down" [title]="hasCart(product) ? 'Товар в корзине' : 'Добавить в корзину'"></i></button>
+                <button class="action-btn btn-wishlist" ><i class="fa fa-heart-o"></i></button>
+                <button class="action-btn btn-compare" [disabled]="hasCompare(product)" (click)="addToCompare(product)"><i class="fa fa-refresh"
+                        [title]="hasCompare(product) ? 'Продукт добавлен в сравнение' : 'Добавить в сравнение'"></i></button>
+                <button class="action-btn btn-quickview" (click)="openViewProduct(product)"><i class="fa fa-search" aria-hidden="true" title="просмотреть"
+                        ></i></button>
                 <!-- сделать отдельным компонентом -->
             </div>
         </div>
@@ -24,8 +28,8 @@
                 </p>
             </div>
             <div class="product-price">
-                <span class="old-price">42(руб)</span>
-                <span class="new-price">222(руб)</span>
+                <span class="old-price">{{newPrice}}(руб)</span>
+                <span class="new-price">{{product.price}}(руб)</span>
             </div>
         </div>
     </div>
