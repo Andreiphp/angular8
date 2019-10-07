@@ -8,9 +8,9 @@
                 (click)="chengeProductsState('block')"></i></li>
             <li [ngClass]="{'curent-view': prodSrv.stateList}"><i class="fa fa-bars"
                 (click)="chengeProductsState('list')"></i></li>
-            <li class="compare"><button><i class="fa fa-refresh" (click)="chengeProductsState('list')"></i>сравнение
+            <li class="compare"><a routerLink="/compare-product/"><i class="fa fa-refresh" (click)="chengeProductsState('list')"></i>сравнение
                 <span class="compare-count">{{countCompare}}</span>
-              </button></li>
+            </a></li>
           </ul>
         </div>
         <div class="catal-tool-count">

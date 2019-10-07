@@ -3,6 +3,7 @@ import { ProductsService } from 'src/app/services/products.service';
 import { Product } from 'src/app/interfaces/product.interfaces';
 import { CartServicesService } from 'src/app/services/cart-services.service';
 import { CompareService } from 'src/app/services/compare.service';
+
 @Component({
   selector: 'app-preview-list',
   templateUrl: './app-preview-list.component.html',
@@ -39,5 +40,4 @@ export class AppPreviewListComponent implements OnInit {
   addToCompare(product: Product) {
     this.comparSrv.addCompare(product);
   }
-
 }

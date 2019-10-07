@@ -36,6 +36,7 @@ import { SearchComponent } from './components/catalog/search/search.component';
 import { CatalogViewComponent } from './components/catalog/catalog-view/catalog-view.component';
 import { AppPreviewListComponent } from './components/preview-list/app-preview-list.component';
 import { PreviewProdBlockComponent } from './components/preview-prod-block/preview-prod-block.component';
+import { CompareProductComponent } from './components/compare-product/compare-product.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +62,8 @@ import { PreviewProdBlockComponent } from './components/preview-prod-block/previ
     SearchComponent,
     CatalogViewComponent,
     AppPreviewListComponent,
-    PreviewProdBlockComponent
+    PreviewProdBlockComponent,
+    CompareProductComponent
   ],
   imports: [
     BrowserModule,

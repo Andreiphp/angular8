@@ -11,12 +11,13 @@ import { LoginComponent } from '../../components/login/login.component';
 import { TestComponent } from '../../components/test/test.component';
 import { SearchComponent } from '../../components/catalog/search/search.component';
 import { CatalogViewComponent } from '../../components/catalog/catalog-view/catalog-view.component';
+import { CompareProductComponent } from 'src/app/components/compare-product/compare-product.component';
 const childrenRouter: Routes = [
     { path: 'newproduct', component: AdminNewProductComponent },
     { path: 'redactproduct', component: AdminRedactProdComponent }
 ];
 const catalogChildren: Routes = [
-    { path: 'search/:page', component: SearchComponent, data: { animation: 'catalogAnimate', data: 'search' } },
+    { path: 'search/:page', component: SearchComponent, data: { animation: 'catalogAnimate', data: 'search', title: null } },
     { path: 'view/:category/:page', component: CatalogViewComponent, data: { animation: 'catalogAnimate', data: 'catalog' } },
 ];
 
@@ -25,9 +26,10 @@ const routes: Routes = [
     {
         path: 'catalog', component: CatalogComponent,
         children: catalogChildren,
-        data: { animation: 'catalogAnimate' },
+        data: { animation: 'catalogAnimate', title: 'Каталог' },
     },
-    { path: 'view-product', component: ViewProductComponent, pathMatch: 'full' },
+    { path: 'view-product', component: ViewProductComponent, pathMatch: 'full', data: {title: null} },
+    { path: 'compare-product', component: CompareProductComponent, pathMatch: 'full', data: {title: 'Сравнение продуктов'} },
     { path: 'login', component: LoginComponent, pathMatch: 'full' },
     { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], children: childrenRouter },
     { path: 'test', component: TestComponent },

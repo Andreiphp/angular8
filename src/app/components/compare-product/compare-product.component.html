@@ -1,0 +1,67 @@
+<div class="compare">
+    <main class="comp-main">
+        <div class="comp-poison">
+            <div class="comp-col">
+                <div class="comp-title">
+                    <h2 class="">
+                        Сравнение товаров
+                    </h2>
+                    <table class="comp-border" style="text-align: center">
+                        <thead>
+                            <tr>
+                                <td colspan="4">Параметры сравнения</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="comp-title">Товар</td>
+                                <td *ngFor="let product of products">
+                                    <a href="">
+                                        {{product.title}}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="comp-title">Изображение</td>
+                                <td *ngFor="let product of products">
+                                    <img [alt]="product.title" src="../../../assets/image/products/{{product.img}}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="comp-title">Цена</td>
+                                <td *ngFor="let product of products">
+                                    <span>{{product.price}}BYN</span>
+                                </td>
+                            </tr>
+                            <tr *ngIf="product?.brand">
+                                <td class="comp-title">Брэнд</td>
+                                <td *ngFor="let product of products">
+                                    <span>{{product.brand}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="comp-title">Описание</td>
+                                <td *ngFor="let product of products">
+                                    <span>{{product.minidescription}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="comp-title">Вес</td>
+                                <td *ngFor="let product of products">
+                                    <span>{{product.weight}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="comp-title">Действие</td>
+                                <td class="comp-action" *ngFor="let product of products">
+                                    <button class="default-btn btn btn-primary">Добавить</button>
+                                    <button class="default-btn btn btn-second">Удалить</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
