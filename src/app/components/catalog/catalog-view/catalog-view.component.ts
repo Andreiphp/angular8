@@ -92,6 +92,10 @@ export class CatalogViewComponent implements OnInit {
       this.prodSrv.stateList = false;
     }
   }
+  
+  compareGo() {
+    this.route.navigate(['/compare-product/']);
+  }
 
   clearSearch() {
     this.prodSrv.clearSearch.next();

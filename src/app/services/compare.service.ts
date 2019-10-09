@@ -9,11 +9,15 @@ export class CompareService {
   constructor() { }
   addCompare(product: Product) {
     if (!this.compareProducts.has(product.id)) {
-      this.compareProducts.set(product.id, product);
+      if (this.compareProducts.size >= 4) {
+        alert('Max 4 products');
+      } else {
+        this.compareProducts.set(product.id, product);
+      }
     }
   }
   deleteFromCompare(product: Product) {
-    if (!this.compareProducts.has(product.id)) {
+    if (this.compareProducts.has(product.id)) {
       this.compareProducts.delete(product.id);
     }
   }
