@@ -7,15 +7,17 @@
                 <img alt="" src="../../../assets/image/products/{{product.img}}">
             </a>
             <div class="action-links">
-                <button class="action-btn btn-cart" [disabled]="hasCart(product)" (click)="addToCart(product)"><i
-                        class="fa fa-cart-arrow-down"
-                        [title]="hasCart(product) ? 'Товар в корзине' : 'Добавить в корзину'"></i></button>
-                <button class="action-btn btn-wishlist"><i class="fa fa-heart-o"></i></button>
-                <button class="action-btn btn-compare" [disabled]="hasCompare(product)"><i class="fa fa-refresh"
-                        (click)="addToCompare(product)"
+                <button class="action-btn btn-cart" [disabled]="hasCart(product)" (click)="addToCart(product)">
+                    <i class="fa fa-cart-arrow-down"
+                        [title]="hasCart(product) ? 'Товар в корзине' : 'Добавить в корзину'">
+                    </i>
+                </button>
+                <!-- <button class="action-btn btn-wishlist"><i class="fa fa-heart-o"></i></button> -->
+                <button class="action-btn btn-compare" (click)="addToCompare(product)"
+                    [disabled]="hasCompare(product)"><i class="fa fa-refresh"
                         [title]="hasCompare(product) ? 'Продукт добавлен в сравнение' : 'Добавить в сравнение'"></i></button>
-                <button class="action-btn btn-quickview"><i class="fa fa-search" aria-hidden="true" title="просмотреть"
-                        (click)="openViewProduct(product)"></i></button>
+                <button class="action-btn btn-quickview" (click)="openViewProduct(product)"><i class="fa fa-search"
+                        aria-hidden="true" title="просмотреть"></i></button>
                 <!-- сделать отдельным компонентом -->
             </div>
         </div>

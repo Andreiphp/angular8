@@ -10,11 +10,17 @@ export class CompareService {
   addCompare(product: Product) {
     if (!this.compareProducts.has(product.id)) {
       if (this.compareProducts.size >= 4) {
-        alert('Max 4 products');
+        this.changeProduct(product);
       } else {
         this.compareProducts.set(product.id, product);
       }
     }
+  }
+  changeProduct(product: Product) {
+    const compareProductsT = Array.from(this.compareProducts);
+    const delProd = compareProductsT[0];
+    this.compareProducts.delete(delProd[0]);
+    this.compareProducts.set(product.id, product);
   }
   deleteFromCompare(product: Product) {
     if (this.compareProducts.has(product.id)) {

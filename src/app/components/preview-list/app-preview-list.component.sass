@@ -33,30 +33,37 @@
           justify-content: space-around
           height: 50px
           width: 100%
-          max-width: 210px
+          max-width: 208px
           margin: 0 auto
           padding: 12px 0
           text-align: center
           z-index: 3
           opacity: 1
           line-height: 26px
-          box-shadow: 1px 1px 0 0 #e8e8e8
+          border-right: none
           background-color: white
           visibility: hidden
           backface-visibility: hidden
           transition: all 0.4s ease-out
           transform: perspective(600px) rotateX(90deg)
-          a
+          button
             display: block
             width: 50px
+            height: 48px
             line-height: 0
+            background: #fff
+            border: none
             border-right: 1px solid #ebebeb
+            outline: none
+            cursor: pointer
             i
               font-size: 16px
               font-weight: 100
               backface-visibility: hidden
-              &:hover
-                color: red
+            &:hover i
+              color: red
+          button:disabled
+            background: #ebebeb  
         .product-label
           position: absolute
           top: 20px

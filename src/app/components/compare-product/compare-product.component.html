@@ -9,7 +9,7 @@
                     <table class="comp-border" style="text-align: center">
                         <thead>
                             <tr>
-                                <td colspan="4">Параметры сравнения</td>
+                                <td colspan="5">Параметры сравнения</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -24,9 +24,9 @@
                             <tr>
                                 <td class="comp-title">Изображение</td>
                                 <td *ngFor="let product of productsCompare">
-                                   <div class="comp-wr-i">
-                                       <img [alt]="product.title" src="../../../assets/image/products/{{product.img}}">
-                                   </div>
+                                    <div class="comp-wr-i">
+                                        <img [alt]="product.title" src="../../../assets/image/products/{{product.img}}">
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -56,8 +56,12 @@
                             <tr>
                                 <td class="comp-title">Действие</td>
                                 <td class="comp-action" *ngFor="let product of productsCompare">
-                                    <button [disabled]="hasCart(product)" (click)="addToCart(product)" class="comp-p default-btn btn btn-primary">В корзину</button>
-                                    <button (click)="deleteCompare(product)" class="default-btn btn btn-second">Удалить</button>
+                                    <div class="comp-action-btn">
+                                        <button [disabled]="hasCart(product)" (click)="addToCart(product)"
+                                            class="comp-p default-btn btn btn-primary">В корзину</button>
+                                        <button (click)="deleteCompare(product)"
+                                            class="default-btn btn btn-second">Удалить</button>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
